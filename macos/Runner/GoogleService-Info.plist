@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>167171721391-c1rb66bjdqav4m65qckr6ikq6e3a5b91.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.167171721391-c1rb66bjdqav4m65qckr6ikq6e3a5b91</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDd4xow242Df97ixJy8_X_TW3kBp3_4gDw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>167171721391</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.bwnyasse.aromaJourney</string>
+	<key>PROJECT_ID</key>
+	<string>aroma-journey-8f041</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aroma-journey-8f041.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:167171721391:ios:1d6d3b47d23634eee46c5a</string>
+</dict>
+</plist>
