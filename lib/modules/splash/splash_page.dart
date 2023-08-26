@@ -1,4 +1,4 @@
-import 'package:aroma_journey/modules/onboarding/pages/login_widget.dart';
+import 'package:aroma_journey/modules/auth/pages/login_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        Modular.to.navigate('/onboarding/');
+        Modular.to.navigate('/auth/');
       } else {
         Modular.to.navigate('/home/');
       }
