@@ -1,4 +1,4 @@
-import 'package:aroma_journey/app/shared/models/user.dart';
+import 'package:aroma_journey/models/user.dart';
 
 abstract class AuthState {}
 

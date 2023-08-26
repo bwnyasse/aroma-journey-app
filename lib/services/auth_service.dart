@@ -1,4 +1,4 @@
-import 'package:aroma_journey/app/shared/models/user.dart';
+import 'package:aroma_journey/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
