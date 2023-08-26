@@ -1,4 +1,5 @@
 import 'package:aroma_journey/bloc/auth/auth_bloc.dart';
+import 'package:aroma_journey/modules/home/widgets/home_categories_widget.dart';
 import 'package:aroma_journey/modules/home/widgets/home_header_widget.dart';
 import 'package:aroma_journey/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +38,15 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           HomeHeaderWidget(),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  HomeCategoriesWidget(),
+                                ]),
+                          ),
                         ],
                       )),
                 ],
