@@ -1,3 +1,4 @@
+import 'package:aroma_journey/backend/firebase/firebase_options.dart';
 import 'package:aroma_journey/main_module.dart';
 import 'package:aroma_journey/main_widget.dart';
 import 'package:aroma_journey/modules/shared/shared.dart';
@@ -24,7 +25,9 @@ void main() async {
 
 void _mainInZone() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   return runApp(ModularApp(
     module: MainModule(),
     child: const MainWidget(),
