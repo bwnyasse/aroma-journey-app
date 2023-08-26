@@ -18,7 +18,6 @@ class AuthService {
   /// User wants to sign in with Google Credentials
   ///
   Future<CurrentUser?> signInWithGoogle() async {
-    CurrentUser? user;
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser != null) {
@@ -29,14 +28,18 @@ class AuthService {
           idToken: googleAuth.idToken,
         );
 
+        // Sign in with Firebase Auth using Google credentials
         await _firebaseAuth.signInWithCredential(credential);
+
+        // Return the signed-in user's information
         return getUser();
       }
     } catch (error) {
+      // Handle any errors that occur during sign-in
       throw AuthServiceException('signInWithGoogle error', error);
     }
 
-    return user;
+    return null; // Return null if the sign-in process didn't complete
   }
 
   ///
@@ -44,6 +47,7 @@ class AuthService {
   ///
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    // Sign out from Google if not on web platform
     if (!kIsWeb) {
       await _googleSignIn.signOut();
     }
@@ -60,13 +64,13 @@ class AuthService {
   ///
   /// Retrieve the signed in User
   ///
-  CurrentUser? getUser() {
+  CurrentUser getUser() {
     User? user = _firebaseAuth.currentUser;
 
     return CurrentUser(
-      email: user?.email,
-      displayName: user?.displayName,
-      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c"),
+      email: user?.email ?? 'notfound@email.com',
+      displayName: user?.displayName ?? 'notfound',
+      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ?? '',
     );
   }
 }

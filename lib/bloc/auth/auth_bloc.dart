@@ -11,6 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLoginWithGoogleEvent>((event, emit) => _onAuthLoginEvent(emit));
     on<AuthSuccessEvent>((event, emit) => _onAuthSuccessEvent(emit));
     on<AuthFailedEvent>((event, emit) => _onAuthFailedEvent(emit));
+    on<AuthLoadingEvent>((event, emit) => emit(AuthLoadingState()));
   }
 
   ///
@@ -26,6 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthFailedState());
       }
     } catch (_) {
+      print("1");
       emit(AuthErrorState());
     }
   }
@@ -43,7 +45,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } else {
         emit(AuthFailedState());
       }
-    } catch (_) {
+    } catch (e) {
+      print("2");
       emit(AuthErrorState());
     }
   }
@@ -68,6 +71,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (currentUser != null) {
       return AuthSuccessState(user: currentUser);
     } else {
+      print("3");
       return AuthErrorState();
     }
   }

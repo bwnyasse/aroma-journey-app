@@ -4,6 +4,8 @@ abstract class AuthState {}
 
 class AuthInitState extends AuthState {}
 
+class AuthLoadingState extends AuthState {}
+
 ///
 /// This is the state when user is authenticated and user object is created.
 ///

@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.2"
+  asuka:
+    dependency: "direct main"
+    description:
+      name: asuka
+      sha256: "2cdff43305cbbe31faecbf275931e3a8f8e2ef91f8ffc2b961a3bbaafff5d959"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   async:
     dependency: transitive
     description:

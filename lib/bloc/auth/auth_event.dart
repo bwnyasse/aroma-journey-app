@@ -7,6 +7,11 @@ abstract class AuthEvent {}
 class AuthInitEvent extends AuthEvent {}
 
 ///
+/// Event triggered when App is Loading for  - Check Auth State of the User
+///
+class AuthLoadingEvent extends AuthEvent {}
+
+///
 /// Event triggered when user try to log with Google
 ///
 class AuthLoginWithGoogleEvent extends AuthEvent {}
