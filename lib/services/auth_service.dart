@@ -7,7 +7,9 @@ class AuthServiceException implements Exception {
   final Object error;
   final String message;
 
-  AuthServiceException(this.message, this.error);
+  AuthServiceException(this.message, this.error) {
+    print(error);
+  }
 }
 
 class AuthService {
@@ -20,6 +22,7 @@ class AuthService {
   Future<CurrentUser?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
       if (googleUser != null) {
         final GoogleSignInAuthentication googleAuth =
             await googleUser.authentication;
@@ -70,7 +73,8 @@ class AuthService {
     return CurrentUser(
       email: user?.email ?? 'notfound@email.com',
       displayName: user?.displayName ?? 'notfound',
-      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ?? 'https://source.unsplash.com/XOhI_kW_TaM',
+      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ??
+          'https://source.unsplash.com/XOhI_kW_TaM',
     );
   }
 }
