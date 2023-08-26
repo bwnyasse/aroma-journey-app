@@ -70,7 +70,7 @@ class AuthService {
     return CurrentUser(
       email: user?.email ?? 'notfound@email.com',
       displayName: user?.displayName ?? 'notfound',
-      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ?? '',
+      photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ?? 'https://source.unsplash.com/XOhI_kW_TaM',
     );
   }
 }

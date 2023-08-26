@@ -1,6 +1,5 @@
 import 'package:aroma_journey/bloc/auth/auth_bloc.dart';
-import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
-import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
+import 'package:aroma_journey/modules/home/widgets/home_header_widget.dart';
 import 'package:aroma_journey/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,7 +8,6 @@ AuthBloc get authBloc => Modular.get<AuthBloc>();
 AuthService get authService => Modular.get<AuthService>();
 
 class HomePage extends StatefulWidget {
-
   const HomePage({super.key});
 
   @override
@@ -17,41 +15,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(authService.getUser().displayName),
-        Text(authService.getUser().email),
-        FFButtonWidget(
-          onPressed: () async {
-            authService.signOut();
-          },
-          text: 'Test Log out',
-          options: FFButtonOptions(
-            width: 240.0,
-            height: 60.0,
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-            iconPadding:
-                const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-            color: FlutterFlowTheme.of(context).primary,
-            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                  fontFamily: 'Poppins',
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.normal,
-                ),
-            elevation: 2.0,
-            borderSide: const BorderSide(
-              color: Colors.transparent,
-              width: 1.0,
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      body: const SafeArea(
+          top: true,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 15.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          HomeHeaderWidget(),
+                        ],
+                      )),
+                ],
+              ),
             ),
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-        ),
-      ],
+          )),
     );
   }
 }
