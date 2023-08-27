@@ -1,3 +1,4 @@
+import 'package:aroma_journey/backend/backend.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_model.dart';
@@ -5,6 +6,7 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
 import 'package:aroma_journey/modules/home/pages/home_model.dart';
 import 'package:aroma_journey/modules/shared/shared.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -110,6 +112,128 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+            child: FutureBuilder<List<ProductRecord>>(
+              future: queryProductRecordOnce(
+                queryBuilder: (productRecord) => productRecord
+                    .where('category_name', isEqualTo: _model.choiceChipsValue),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                List<ProductRecord> productListProductRecordList =
+                    snapshot.data!;
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(
+                      productListProductRecordList.length,
+                      (productListIndex) {
+                        final productListProductRecord =
+                            productListProductRecordList[productListIndex];
+                        return Stack(
+                          children: [
+                            Container(
+                              width: 160,
+                              height: 185,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                            ),
+                            Container(
+                              width: 145,
+                              height: 165,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 5,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 5),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Stack(
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    // TODO: navigate to the details page
+                                    onTap: () async {},
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  7, 7, 7, 0),
+                                          child: Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                .width,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image:
+                                                    CachedNetworkImageProvider(
+                                                  productListProductRecord
+                                                      .image,
+                                                ),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  7, 0, 0, 0),
+                                          child: Text(
+                                            productListProductRecord.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
         ],
       ),
     );

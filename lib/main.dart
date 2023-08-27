@@ -1,12 +1,11 @@
+import 'dart:async';
+
 import 'package:aroma_journey/backend/firebase/firebase_options.dart';
 import 'package:aroma_journey/main_module.dart';
 import 'package:aroma_journey/main_widget.dart';
-import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'dart:async';
-
 import 'package:logging/logging.dart';
 
 final log = Logger('AmoraJourney');

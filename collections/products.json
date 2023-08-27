@@ -1,0 +1,83 @@
+[
+    {
+      "category_name": "Cappuccino",
+      "name": "Classic Cappuccino",
+      "info": "A harmonious blend of expresso, steamed milk, and creamy foam.",
+      "image": "https://bit.ly/47Tkguf",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Cappuccino",
+      "name": "Vanilla Cappuccino",
+      "info": "A delightful twist with the sweetness of vanilla syrup.",
+      "image": "https://bit.ly/47Tkguf",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Cappuccino",
+      "name": "Caramel Cappuccino",
+      "info": "Rich expresso combined with the sweetness of caramel drizzle.",
+      "image": "https://bit.ly/47Tkguf",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Expresso",
+      "name": "Classic Expresso",
+      "info": "A strong and concentrated shot of pure expresso.",
+      "image": "https://bit.ly/44u8aFc",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Expresso",
+      "name": "Double Shot Expresso",
+      "info": "Double the intensity, double the flavor.",
+      "image": "https://bit.ly/44u8aFc",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Expresso",
+      "name": "Expresso Macchiato",
+      "info": "Expresso 'stained' with a dash of milk for a balanced sip.",
+      "image": "https://bit.ly/44u8aFc",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Cold Brew",
+      "name": "Classic Cold Brew",
+      "info": "Smooth and refreshing cold brew coffee, perfect for warm days.",
+      "image": "https://bit.ly/3YSpXEF",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Cold Brew",
+      "name": "Vanilla Cold Brew",
+      "info": "Cold brew infused with the sweetness of vanilla.",
+      "image": "https://bit.ly/3YSpXEF",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    },
+    {
+      "category_name": "Cold Brew",
+      "name": "Mocha Cold Brew",
+      "info": "A delightful combination of cold brew and rich chocolate flavor.",
+      "image": "https://bit.ly/3YSpXEF",
+      "isLiked": false,
+      "offer_description": "",
+      "isOffer": false
+    }
+  ]
