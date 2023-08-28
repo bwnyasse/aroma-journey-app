@@ -8,6 +8,7 @@ import 'package:aroma_journey/modules/home/pages/home_model.dart';
 import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeCategoriesWidget extends StatefulWidget {
@@ -177,17 +178,19 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
-                                    // TODO: navigate to the details page
-                                    onTap: () async {},
+                                    onTap: () async {
+                                      Modular.to.navigate('/product',
+                                          arguments: productListProductRecord
+                                              .reference);
+                                    },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  7, 7, 7, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(7, 7, 7, 0),
                                           child: Container(
                                             width: MediaQuery.sizeOf(context)
                                                 .width,
@@ -210,9 +213,8 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  7, 0, 0, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(7, 0, 0, 0),
                                           child: Text(
                                             productListProductRecord.name,
                                             style: FlutterFlowTheme.of(context)

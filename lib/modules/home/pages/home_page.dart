@@ -9,6 +9,8 @@ AuthBloc get authBloc => Modular.get<AuthBloc>();
 AuthService get authService => Modular.get<AuthService>();
 
 class HomePage extends StatefulWidget {
+  static const String routeKey = 'home';
+
   const HomePage({super.key});
 
   @override
@@ -17,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {

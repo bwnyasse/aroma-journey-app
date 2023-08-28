@@ -2,10 +2,51 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-
-
-
 final animationsMap = {
+  'blurOnPageLoadAnimation': AnimationInfo(
+    trigger: AnimationTrigger.onPageLoad,
+    effects: [
+      ShakeEffect(
+        curve: Curves.easeInOut,
+        delay: 80.ms,
+        duration: 1000.ms,
+        hz: 5,
+        offset: const Offset(0, 0),
+        rotation: 0.105,
+      ),
+      ScaleEffect(
+        curve: Curves.easeInOut,
+        delay: 80.ms,
+        duration: 1000.ms,
+        begin: const Offset(0, 0),
+        end: const Offset(1, 1),
+      ),
+    ],
+  ),
+  'containerOnPageLoadAnimation1': AnimationInfo(
+    trigger: AnimationTrigger.onPageLoad,
+    effects: [
+      MoveEffect(
+        curve: Curves.easeInOut,
+        delay: 0.ms,
+        duration: 300.ms,
+        begin: const Offset(0, 100),
+        end: const Offset(0, 0),
+      ),
+    ],
+  ),
+  'containerOnPageLoadAnimation2': AnimationInfo(
+    trigger: AnimationTrigger.onPageLoad,
+    effects: [
+      ScaleEffect(
+        curve: Curves.easeInOut,
+        delay: 0.ms,
+        duration: 600.ms,
+        begin: const Offset(0.6, 0.6),
+        end: const Offset(1, 1),
+      ),
+    ],
+  ),
   'rowOnPageLoadAnimation1': AnimationInfo(
     trigger: AnimationTrigger.onPageLoad,
     effects: [
