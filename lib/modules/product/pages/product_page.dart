@@ -131,7 +131,8 @@ class _ProductPageState extends State<ProductPage>
                       fit: BoxFit.cover,
                     ),
                   ),
-                  if (stackProductRecord.isOffer)
+                  //if (stackProductRecord.isOffer)
+                  if (true)
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           0.0, 145.0, 0.0, 0.0),
@@ -161,7 +162,8 @@ class _ProductPageState extends State<ProductPage>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    stackProductRecord.offerDescription,
+                                    //stackProductRecord.offerDescription,
+                                    "Test offer",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

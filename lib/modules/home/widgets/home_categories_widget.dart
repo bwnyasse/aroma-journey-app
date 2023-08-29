@@ -179,7 +179,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      Modular.to.navigate('/product',
+                                      Modular.to.navigate('/product/',
                                           arguments: productListProductRecord
                                               .reference);
                                     },

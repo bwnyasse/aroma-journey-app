@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aroma_journey/main_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -222,12 +223,12 @@ extension StringDocRef on String {
   DocumentReference get ref => FirebaseFirestore.instance.doc(this);
 }
 
-/*void setAppLanguage(BuildContext context, String language) =>
-    MyApp.of(context).setLocale(language);
+void setAppLanguage(BuildContext context, String language) =>
+    MainWidget.of(context).setLocale(language);
 
 void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
-    MyApp.of(context).setThemeMode(themeMode);
-*/
+    MainWidget.of(context).setThemeMode(themeMode);
+
 
 void showSnackbar(
   BuildContext context,
