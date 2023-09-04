@@ -9,9 +9,12 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_toggle_icon.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_util.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
 import 'package:aroma_journey/modules/product/pages/product_model.dart';
+import 'package:aroma_journey/services/coffee_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+CoffeeService get coffeeService => Modular.get<CoffeeService>();
 
 class ProductPage extends StatefulWidget {
   const ProductPage({
@@ -28,6 +31,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage>
     with TickerProviderStateMixin {
   late ProductModel _model;
+  late String generatedContent = '';
+  Map<String, String> generateAIresponse = {};
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -81,7 +86,9 @@ class _ProductPageState extends State<ProductPage>
   @override
   void initState() {
     super.initState();
+
     _model = createModel(context, () => ProductModel());
+    generatedContent = 'init';
   }
 
   @override
@@ -384,57 +391,8 @@ class _ProductPageState extends State<ProductPage>
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Container(
-                                        width: 350.0,
-                                        height: 80.0,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0x35A6A6AA),
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(30.0, 0.0, 30.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                'Coffee',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                              const SizedBox(
-                                                height: 50.0,
-                                                child: VerticalDivider(
-                                                  thickness: 1.0,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Chocolate',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                              const SizedBox(
-                                                height: 50.0,
-                                                child: VerticalDivider(
-                                                  thickness: 1.0,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Medium Roasted',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation2']!),
+                                      // FIXME: Hide for the moment
+                                      //buildExtraContainer(context).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation2']!),
                                       Padding(
                                         padding: const EdgeInsetsDirectional
                                             .fromSTEB(16.0, 30.0, 0.0, 0.0),
@@ -442,7 +400,7 @@ class _ProductPageState extends State<ProductPage>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Coffee Size',
+                                              'Coffee Journey',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -459,13 +417,17 @@ class _ProductPageState extends State<ProductPage>
                                             .fromSTEB(0.0, 18.0, 0.0, 8.0),
                                         child: FlutterFlowChoiceChips(
                                           options: const [
-                                            ChipData('Small'),
-                                            ChipData('Medium'),
-                                            ChipData('Large')
+                                            ChipData('Brewing'),
+                                            ChipData('Taste'),
+                                            ChipData('Health')
                                           ],
-                                          onChanged: (val) => setState(() =>
+                                          onChanged: (val) {
+                                            setState(() {
                                               _model.coffeeSizeOptionsValue =
-                                                  val?.first),
+                                                  val?.first;
+                                              generatedContent = "ici $val";
+                                            });
+                                          },
                                           selectedChipStyle: ChipStyle(
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
@@ -518,7 +480,7 @@ class _ProductPageState extends State<ProductPage>
                                           controller: _model
                                                   .coffeeSizeOptionsValueController ??=
                                               FormFieldController<List<String>>(
-                                            ['Small'],
+                                            ['Brewing'],
                                           ),
                                         ),
                                       ),
@@ -529,7 +491,7 @@ class _ProductPageState extends State<ProductPage>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'About',
+                                              'Generative ( experimental )',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -554,7 +516,7 @@ class _ProductPageState extends State<ProductPage>
                                                         .fromSTEB(
                                                         0.0, 5.0, 40.0, 0.0),
                                                 child: Text(
-                                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id ipsum vivamus velit lorem amet. Tincidunt cras volutpat aliquam porttitor molestie. Netus neque, habitasse id vulputate proin cras. Neque, vel duis sit vel pellentesque tempor. A commodo arcu tortor arcu, elit.  Id ipsum vivamus velit lorem amet. Follow me on Instagram: @luizmello.dev hihih =)',
+                                                  generatedContent,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -569,102 +531,6 @@ class _ProductPageState extends State<ProductPage>
                                               ),
                                             ),
                                           ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(16.0, 50.0, 16.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            print("another one");
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: const Text(
-                                                  'Added to cart!',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 80.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              borderRadius:
-                                                  BorderRadius.circular(60.0),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      35.0, 0.0, 35.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  Text(
-                                                    'Add to Cart',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.white,
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 30.0,
-                                                    child: VerticalDivider(
-                                                      thickness: 1.0,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    formatNumber(
-                                                      12345,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType:
-                                                          DecimalType.automatic,
-                                                      currency: '\$',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.white,
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
                                         ),
                                       ),
                                     ],
@@ -682,6 +548,50 @@ class _ProductPageState extends State<ProductPage>
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+
+  Container buildExtraContainer(BuildContext context) {
+    return Container(
+      width: 350.0,
+      height: 80.0,
+      decoration: BoxDecoration(
+        color: const Color(0x35A6A6AA),
+        borderRadius: BorderRadius.circular(100.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'Coffee',
+              style: FlutterFlowTheme.of(context).bodyMedium,
+            ),
+            const SizedBox(
+              height: 50.0,
+              child: VerticalDivider(
+                thickness: 1.0,
+              ),
+            ),
+            Text(
+              'Chocolate',
+              style: FlutterFlowTheme.of(context).bodyMedium,
+            ),
+            const SizedBox(
+              height: 50.0,
+              child: VerticalDivider(
+                thickness: 1.0,
+              ),
+            ),
+            Text(
+              'Medium Roasted',
+              style: FlutterFlowTheme.of(context).bodyMedium,
+            ),
+          ],
         ),
       ),
     );

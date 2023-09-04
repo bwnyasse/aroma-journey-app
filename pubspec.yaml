@@ -44,6 +44,10 @@ dependencies:
   chips_choice: ^3.0.0
   logging: ^1.2.0
   collection: ^1.17.2
+  url_launcher_ios: ^6.1.4
+  google_generative_language_api: ^0.2.1
+  dotenv: ^4.1.0
+  firebase_app_check: ^0.1.5+2
 
 dev_dependencies:
   flutter_test:
