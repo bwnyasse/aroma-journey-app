@@ -101,11 +101,10 @@ class _ProductPageState extends State<ProductPage>
   }
 
   Future<void> generatePalm2Response(String coffee) async {
-    print("LA $coffee");
     final response = await coffeeService.multiGeneration(coffee);
-    print("response  $response");
     setState(() {
       palm2Response = response;
+      generatedContent = palm2Response['Brewing']!;
     });
   }
 
@@ -381,7 +380,7 @@ class _ProductPageState extends State<ProductPage>
                           0.0, 300.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 700.0,
+                        height: 1500.0,
                         decoration: const BoxDecoration(
                           color: Color(0xFFF8F7FA),
                           boxShadow: [
@@ -437,9 +436,8 @@ class _ProductPageState extends State<ProductPage>
                                     setState(() {
                                       _model.coffeeSizeOptionsValue =
                                           val?.first;
-                                      /*generatedContent =
-                                                        palm2Response[
-                                                            '$val']!;*/
+                                      generatedContent =
+                                          palm2Response[val?.first]!;
                                     });
                                   },
                                   selectedChipStyle: ChipStyle(

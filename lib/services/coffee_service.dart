@@ -115,11 +115,11 @@ class CoffeeService {
 
   Future<Map<String, String>> multiGeneration(String coffee) {
     return Future.wait([
-      _generativeAIPromptCoffeJourney(
+      generativeAIPromptCoffeJourney(
           "Could you provide step-by-step instructions on how to brew a delicious $coffee ? The ouput must be in markdown format."),
-      _generativeAIPromptCoffeJourney(
+      generativeAIPromptCoffeJourney(
           "Could you describe the flavor profile of $coffee, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format."),
-      _generativeAIPromptCoffeJourney(
+      generativeAIPromptCoffeJourney(
           "Could you provide insights into the potential health effects of incorporating $coffee into one's routine, including considerations related to ingredients and nutritional aspects?"),
     ]).then((value) => {
           'Brewing': value[0],
@@ -128,9 +128,9 @@ class CoffeeService {
         });
   }
 
-  Future<String> _generativeAIPromptCoffeJourney(String input) async {
+  Future<String> generativeAIPromptCoffeJourney(String input) async {
     //  Prompt
-    const promptString = '''input: $exampleInput1
+    String promptString = '''input: $exampleInput1
     output: $exampleOutput1
     
     input: $exampleInput2
@@ -139,11 +139,11 @@ class CoffeeService {
     input: $exampleInput3
     output: $exampleOutput3
     
-    input: input
+    input: $input
     output:''';
 
     // Generate text.
-    const textRequest = GenerateTextRequest(
+    GenerateTextRequest textRequest = GenerateTextRequest(
         prompt: TextPrompt(text: promptString),
         // optional, 0.0 always uses the highest-probability result
         temperature: 0.7,
@@ -158,7 +158,7 @@ class CoffeeService {
         // optional, sequences at which to stop model generation
         stopSequences: [],
         // optional, safety settings
-        safetySettings: [
+        safetySettings: const [
           SafetySetting(
               category: HarmCategory.derogatory,
               threshold: HarmBlockThreshold.lowAndAbove),
@@ -178,13 +178,11 @@ class CoffeeService {
               category: HarmCategory.dangerous,
               threshold: HarmBlockThreshold.mediumAndAbove),
         ]);
-
     final GeneratedText response = await GenerativeLanguageAPI.generateText(
       modelName: textModel,
       request: textRequest,
       apiKey: apiKey,
     );
-
     if (response.candidates.isNotEmpty) {
       TextCompletion candidate = response.candidates.first;
       return candidate.output;
