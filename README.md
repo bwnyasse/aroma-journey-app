@@ -51,26 +51,34 @@ Here is a list of upcoming features and enhancements that I am planning for the 
 
 1. Clone this repository to your local machine.
 
+    ```
     git clone https://github.com/yourusername/aroma-journey-app.git
-    cd aroma-journey-app
+    ```
 
 2. Install the required dependencies using Flutter.
 
+    ```
     flutter pub get
+    ```
 
 
-3. Create a .env file in the root directory of your project. Add your Palm API key.
+3. Create a `.env` file in the root directory of your project. Add your Palm API key.
 
+    ```
     PALM_API_KEY=your_palm_api_key
+    ```
 
 4. Run the app on your platform (preferred Chrome/Android).
 
+    ```
     flutter run
-
+    ```
+    
     or
-
+    
+    ```
     flutter run -d chrome --web-renderer html
-
+    ```
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to "Aroma Journey," please follow these steps:
