@@ -8,6 +8,6 @@ class ProductModule extends Module {
   @override
   void routes(r) {
     r.child('/:productRef',
-        child: (context) => ProductPage(productRef: r.args.data));
+        child: (context) => ProductPage(productRecord: r.args.data));
   }
 }

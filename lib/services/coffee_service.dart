@@ -1,4 +1,4 @@
-import 'package:dotenv/dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_language_api/google_generative_language_api.dart';
 
 class CoffeeServiceException implements Exception {
@@ -107,11 +107,10 @@ class CoffeeService {
   /// API_KEY=<PALM_API_KEY>
   late final String apiKey;
 
-  final DotEnv env = DotEnv(includePlatformEnvironment: true)..load();
   final String textModel = 'models/text-bison-001';
 
   CoffeeService() {
-    apiKey = env['PALM_API_KEY']!;
+    apiKey = dotenv.env['PALM_API_KEY']!;
   }
 
   Future<Map<String, String>> multiGeneration(String coffee) {

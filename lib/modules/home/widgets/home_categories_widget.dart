@@ -180,8 +180,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       Modular.to.navigate('/product/',
-                                          arguments: productListProductRecord
-                                              .reference);
+                                          arguments: productListProductRecord);
                                     },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,

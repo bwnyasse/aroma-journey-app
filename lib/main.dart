@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:aroma_journey/backend/firebase/firebase_options.dart';
 import 'package:aroma_journey/main_module.dart';
 import 'package:aroma_journey/main_widget.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logging/logging.dart';
 
@@ -25,10 +25,13 @@ void main() async {
 
 void _mainInZone() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // To load the .env file contents into dotenv.
+  await dotenv.load(fileName: ".env");
+  // Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate(
+  /*await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: 'recaptcha-v3-site-key',
     // Default provider for Android is the Play Integrity provider. You can use the "AndroidProvider" enum to choose
     // your preferred provider. Choose from:
@@ -43,7 +46,7 @@ void _mainInZone() async {
     // 3. App Attest provider
     // 4. App Attest provider with fallback to Device Check provider (App Attest provider is only available on iOS 14.0+, macOS 14.0+)
     appleProvider: AppleProvider.appAttest,
-  );
+  );*/
   return runApp(ModularApp(
     module: MainModule(),
     child: const MainWidget(),
