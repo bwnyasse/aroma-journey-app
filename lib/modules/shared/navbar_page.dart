@@ -1,5 +1,6 @@
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/modules/home/pages/home_page.dart';
+import 'package:aroma_journey/modules/quizz/pages/quizz_pages.dart';
 import 'package:flutter/material.dart';
 
 class NavBarPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       HomePage.routeKey: const HomePage(),
-      'favorite': const Text("Fav"),
+      QuizzPage.routeKey: const QuizzPage(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -57,10 +58,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.favorite,
+              Icons.quiz_outlined,
               size: 24.0,
             ),
-            label: 'Favorites',
+            label: 'Quizz',
             tooltip: '',
           )
         ],
