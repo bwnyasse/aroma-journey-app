@@ -12,6 +12,7 @@ import 'package:aroma_journey/modules/product/pages/product_model.dart';
 import 'package:aroma_journey/services/coffee_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 CoffeeService get coffeeService => Modular.get<CoffeeService>();
@@ -160,10 +161,9 @@ class _ProductPageState extends State<ProductPage>
             ),
           ),
           if (stackProductRecord.isOffer)
-            //if (true)
             Padding(
               padding:
-                  const EdgeInsetsDirectional.fromSTEB(0.0, 145.0, 0.0, 0.0),
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 105.0, 0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30.0),
                 child: BackdropFilter(
@@ -380,7 +380,7 @@ class _ProductPageState extends State<ProductPage>
                           0.0, 300.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 1500.0,
+                        height: 1800.0,
                         decoration: const BoxDecoration(
                           color: Color(0xFFF8F7FA),
                           boxShadow: [
@@ -516,17 +516,8 @@ class _ProductPageState extends State<ProductPage>
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional
                                             .fromSTEB(0.0, 5.0, 40.0, 0.0),
-                                        child: Text(
-                                          generatedContent,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 14.0,
-                                                letterSpacing: 1.0,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
+                                        child: MarkdownBody(
+                                            data: generatedContent),
                                       ),
                                     ),
                                   ],
