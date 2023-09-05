@@ -1,5 +1,4 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_generative_language_api/google_generative_language_api.dart';
+import 'package:aroma_journey/backend/palm/palm_util.dart';
 
 class CoffeeServiceException implements Exception {
   final Object error;
@@ -98,28 +97,13 @@ In summary, Vanilla Cappuccino can be a delightful addition to your routine when
 ''';
 
 class CoffeeService {
-  /// The API key is stored in the local .env file. Create one if you want to run
-  /// this example or replace this apiKey with your own.
-  ///
-  /// DO NOT PUBLICLY SHARE YOUR API KEY.
-  /// .env file should have a line that looks like this:
-  ///
-  /// API_KEY=<PALM_API_KEY>
-  late final String apiKey;
-
-  final String textModel = 'models/text-bison-001';
-
-  CoffeeService() {
-    apiKey = dotenv.env['PALM_API_KEY']!;
-  }
-
   Future<Map<String, String>> multiGeneration(String coffee) {
     return Future.wait([
-      generativeAIPromptCoffeJourney(
+      _generativeAIPromptCoffeJourney(
           "Could you provide step-by-step instructions on how to brew a delicious $coffee ? The ouput must be in markdown format."),
-      generativeAIPromptCoffeJourney(
+      _generativeAIPromptCoffeJourney(
           "Could you describe the flavor profile of $coffee, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format."),
-      generativeAIPromptCoffeJourney(
+      _generativeAIPromptCoffeJourney(
           "Could you provide insights into the potential health effects of incorporating $coffee into one's routine, including considerations related to ingredients and nutritional aspects?"),
     ]).then((value) => {
           'Brewing': value[0],
@@ -128,65 +112,14 @@ class CoffeeService {
         });
   }
 
-  Future<String> generativeAIPromptCoffeJourney(String input) async {
-    //  Prompt
-    String promptString = '''input: $exampleInput1
-    output: $exampleOutput1
-    
-    input: $exampleInput2
-    output: $exampleOutput2
-    
-    input: $exampleInput3
-    output: $exampleOutput3
-    
-    input: $input
-    output:''';
-
-    // Generate text.
-    GenerateTextRequest textRequest = GenerateTextRequest(
-        prompt: TextPrompt(text: promptString),
-        // optional, 0.0 always uses the highest-probability result
-        temperature: 0.7,
-        // optional, how many candidate results to generate
-        candidateCount: 1,
-        // optional, number of most probable tokens to consider for generation
-        topK: 40,
-        // optional, for nucleus sampling decoding strategy
-        topP: 0.95,
-        // optional, maximum number of output tokens to generate
-        maxOutputTokens: 1024,
-        // optional, sequences at which to stop model generation
-        stopSequences: [],
-        // optional, safety settings
-        safetySettings: const [
-          SafetySetting(
-              category: HarmCategory.derogatory,
-              threshold: HarmBlockThreshold.lowAndAbove),
-          SafetySetting(
-              category: HarmCategory.toxicity,
-              threshold: HarmBlockThreshold.lowAndAbove),
-          SafetySetting(
-              category: HarmCategory.violence,
-              threshold: HarmBlockThreshold.mediumAndAbove),
-          SafetySetting(
-              category: HarmCategory.sexual,
-              threshold: HarmBlockThreshold.mediumAndAbove),
-          SafetySetting(
-              category: HarmCategory.medical,
-              threshold: HarmBlockThreshold.mediumAndAbove),
-          SafetySetting(
-              category: HarmCategory.dangerous,
-              threshold: HarmBlockThreshold.mediumAndAbove),
-        ]);
-    final GeneratedText response = await GenerativeLanguageAPI.generateText(
-      modelName: textModel,
-      request: textRequest,
-      apiKey: apiKey,
-    );
-    if (response.candidates.isNotEmpty) {
-      TextCompletion candidate = response.candidates.first;
-      return candidate.output;
-    }
-    return '';
-  }
+  Future<String> _generativeAIPromptCoffeJourney(String input) async =>
+      PaLMUtil.generateTextFormPaLM(
+        exampleInput1: exampleInput1,
+        exampleOutput1: exampleOutput1,
+        exampleInput2: exampleInput2,
+        exampleOutput2: exampleOutput2,
+        exampleInput3: exampleInput3,
+        exampleOutput3: exampleOutput3,
+        input: input,
+      );
 }

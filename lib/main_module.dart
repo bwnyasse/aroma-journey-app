@@ -1,4 +1,5 @@
 import 'package:aroma_journey/bloc/auth/auth_bloc.dart';
+import 'package:aroma_journey/bloc/coffee/coffee_bloc.dart';
 import 'package:aroma_journey/modules/home/home_module.dart';
 import 'package:aroma_journey/modules/auth/auth_module.dart';
 import 'package:aroma_journey/modules/product/product_module.dart';
@@ -13,6 +14,7 @@ class MainModule extends Module {
   @override
   void binds(i) {
     i.addSingleton(AuthBloc.new);
+    i.addSingleton(CoffeeBloc.new);
     i.addSingleton(AuthService.new);
     i.addSingleton(CoffeeService.new);
     i.addSingleton(QuizzService.new);

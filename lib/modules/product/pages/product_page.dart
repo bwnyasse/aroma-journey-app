@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:aroma_journey/backend/schema/product_record.dart';
+import 'package:aroma_journey/bloc/coffee/coffee_bloc.dart';
+import 'package:aroma_journey/bloc/coffee/coffee_event.dart';
+import 'package:aroma_journey/bloc/coffee/coffee_state.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,13 +12,12 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_toggle_icon.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_util.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
 import 'package:aroma_journey/modules/product/pages/product_model.dart';
-import 'package:aroma_journey/services/coffee_service.dart';
+import 'package:asuka/snackbars/asuka_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-CoffeeService get coffeeService => Modular.get<CoffeeService>();
 
 class ProductPage extends StatefulWidget {
   const ProductPage({
@@ -32,7 +34,6 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage>
     with TickerProviderStateMixin {
   late ProductModel _model;
-  late String generatedContent = '';
   Map<String, String> palm2Response = {};
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -88,55 +89,60 @@ class _ProductPageState extends State<ProductPage>
   void initState() {
     super.initState();
     _model = createModel(context, () => ProductModel());
-    generatedContent = 'Brewing';
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      generatePalm2Response(widget.productRecord.name);
-    });
+    Modular.get<CoffeeBloc>().add(CoffeeInitEvent(widget.productRecord.name));
   }
 
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
-  }
-
-  Future<void> generatePalm2Response(String coffee) async {
-    final response = await coffeeService.multiGeneration(coffee);
-    setState(() {
-      palm2Response = response;
-      generatedContent = palm2Response['Brewing']!;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: StreamBuilder<ProductRecord>(
-          stream: ProductRecord.getDocument(widget.productRecord.reference),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
+    return BlocListener<CoffeeBloc, CoffeeState>(
+      bloc: Modular.get<CoffeeBloc>(),
+      listener: (context, state) {
+        if (state is CoffeeLoadingState) {
+          AsukaSnackbar.warning("CoffeeLoadingState").show();
+        }
+        if (state is CoffeeErrorState) {
+          AsukaSnackbar.alert("CoffeeErrorState").show();
+        }
+        if (state is CoffeeSuccessState) {
+          AsukaSnackbar.success("CoffeeSuccessState").show();
+        }
+        if (state is CoffeeContentState) {
+          print(state.content);
+        }
+      },
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+        child: Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          body: StreamBuilder<ProductRecord>(
+            stream: ProductRecord.getDocument(widget.productRecord.reference),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
-                ),
-              );
-            } else {
-              final stackProductRecord = snapshot.data!;
-              return generateMainContent(context, stackProductRecord);
-            }
-          },
+                );
+              } else {
+                final stackProductRecord = snapshot.data!;
+                return generateMainContent(context, stackProductRecord);
+              }
+            },
+          ),
         ),
       ),
     );
@@ -423,106 +429,162 @@ class _ProductPageState extends State<ProductPage>
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 18.0, 0.0, 8.0),
-                                child: FlutterFlowChoiceChips(
-                                  options: const [
-                                    ChipData('Brewing'),
-                                    ChipData('Taste'),
-                                    ChipData('Health')
-                                  ],
-                                  onChanged: (val) {
-                                    setState(() {
-                                      _model.coffeeSizeOptionsValue =
-                                          val?.first;
-                                      generatedContent =
-                                          palm2Response[val?.first]!;
-                                    });
-                                  },
-                                  selectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                    iconColor: Colors.white,
-                                    iconSize: 18.0,
-                                    labelPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 5.0, 15.0, 5.0),
-                                    elevation: 41.0,
-                                  ),
-                                  unselectedChipStyle: ChipStyle(
-                                    backgroundColor: Colors.white,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: const Color(0xCC000000),
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    iconColor: const Color(0xCC000000),
-                                    iconSize: 18.0,
-                                    labelPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 5.0, 15.0, 5.0),
-                                    elevation: 4.0,
-                                  ),
-                                  chipSpacing: 30.0,
-                                  rowSpacing: 12.0,
-                                  multiselect: false,
-                                  initialized:
-                                      _model.coffeeSizeOptionsValue != null,
-                                  alignment: WrapAlignment.start,
-                                  controller: _model
-                                          .coffeeSizeOptionsValueController ??=
-                                      FormFieldController<List<String>>(
-                                    ['Brewing'],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 30.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Generative ( experimental )',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 20.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0.0, 5.0, 40.0, 0.0),
-                                        child: MarkdownBody(
-                                            data: generatedContent),
+                              BlocBuilder<CoffeeBloc, CoffeeState>(
+                                  builder: (context, state) {
+                                if (state is CoffeeLoadingState) {
+                                  return const Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 100, 0, 0),
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                Colors.blue),
+                                        strokeWidth: 5.0,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  );
+                                }
+                                if (state is CoffeeSuccessState) {
+                                  palm2Response = state.response;
+                                  return Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0.0, 18.0, 0.0, 8.0),
+                                        child: FlutterFlowChoiceChips(
+                                          options: const [
+                                            ChipData('Brewing'),
+                                            ChipData('Taste'),
+                                            ChipData('Health')
+                                          ],
+                                          onChanged: (val) {
+                                            setState(() {
+                                              _model.coffeeSizeOptionsValue =
+                                                  val?.first;
+                                            });
+                                          },
+                                          selectedChipStyle: ChipStyle(
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Colors.white,
+                                                      fontSize: 18.0,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                            iconColor: Colors.white,
+                                            iconSize: 18.0,
+                                            labelPadding:
+                                                const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                    15.0, 5.0, 15.0, 5.0),
+                                            elevation: 41.0,
+                                          ),
+                                          unselectedChipStyle: ChipStyle(
+                                            backgroundColor: Colors.white,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodySmall
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color:
+                                                      const Color(0xCC000000),
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                            iconColor: const Color(0xCC000000),
+                                            iconSize: 18.0,
+                                            labelPadding:
+                                                const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                    15.0, 5.0, 15.0, 5.0),
+                                            elevation: 4.0,
+                                          ),
+                                          chipSpacing: 30.0,
+                                          rowSpacing: 12.0,
+                                          multiselect: false,
+                                          initialized:
+                                              _model.coffeeSizeOptionsValue !=
+                                                  null,
+                                          alignment: WrapAlignment.start,
+                                          controller: _model
+                                                  .coffeeSizeOptionsValueController ??=
+                                              FormFieldController<List<String>>(
+                                            ['Brewing'],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(16.0, 30.0, 0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Generative ( experimental )',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 20.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Stack(
+                                        children: [
+                                          for (String key in palm2Response.keys)
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(0.0,
+                                                              5.0, 40.0, 0.0),
+                                                      child: Positioned.fill(
+                                                        child: AnimatedOpacity(
+                                                          opacity:
+                                                              _model.coffeeSizeOptionsValue ==
+                                                                      key
+                                                                  ? 1.0
+                                                                  : 0.0,
+                                                          duration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      200),
+                                                          child: MarkdownBody(
+                                                              data:
+                                                                  palm2Response[
+                                                                      key]!),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ],
+                                  );
+                                }
+                                return const Text('');
+                              }),
                             ],
                           ),
                         ),
