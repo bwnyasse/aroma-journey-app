@@ -14,7 +14,6 @@ class MainModule extends Module {
   @override
   void binds(i) {
     i.addSingleton(AuthBloc.new);
-    i.addSingleton(CoffeeBloc.new);
     i.addSingleton(AuthService.new);
     i.addSingleton(CoffeeService.new);
     i.addSingleton(QuizzService.new);

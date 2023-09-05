@@ -89,7 +89,8 @@ class _ProductPageState extends State<ProductPage>
   void initState() {
     super.initState();
     _model = createModel(context, () => ProductModel());
-    Modular.get<CoffeeBloc>().add(CoffeeInitEvent(widget.productRecord.name));
+    BlocProvider.of<CoffeeBloc>(context)
+        .add(CoffeeInitEvent(widget.productRecord.name));
   }
 
   @override
@@ -101,7 +102,7 @@ class _ProductPageState extends State<ProductPage>
   @override
   Widget build(BuildContext context) {
     return BlocListener<CoffeeBloc, CoffeeState>(
-      bloc: Modular.get<CoffeeBloc>(),
+      bloc: BlocProvider.of<CoffeeBloc>(context),
       listener: (context, state) {
         if (state is CoffeeLoadingState) {
           AsukaSnackbar.warning("CoffeeLoadingState").show();

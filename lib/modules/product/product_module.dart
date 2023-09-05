@@ -11,7 +11,7 @@ class ProductModule extends Module {
   void routes(r) {
     r.child('/:productRef',
         child: (context) => BlocProvider(
-              create: (context) => Modular.get<CoffeeBloc>(),
+              create: (context) => CoffeeBloc(),
               child: ProductPage(productRecord: r.args.data),
             ));
   }
