@@ -1,5 +1,7 @@
+import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
+import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:aroma_journey/services/auth_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +94,7 @@ class HomeHeaderWidget extends StatelessWidget {
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
+                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
               ),
             ],
           ),

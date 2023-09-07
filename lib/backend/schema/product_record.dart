@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 
 class ProductRecord extends FirestoreRecord {
+
   ProductRecord._(
     DocumentReference reference,
     Map<String, dynamic> data,

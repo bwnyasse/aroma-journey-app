@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:aroma_journey/backend/palm/palm_util.dart';
 import 'package:aroma_journey/modules/quizz/pages/quizz_pages.dart';
+import 'package:aroma_journey/modules/shared/shared.dart' as shared;
 
 const String exampleInput1 =
     'Could you generate a true or false question about Classic Expression for me? Please include the answer at the end within curly braces {}.';
@@ -29,27 +30,10 @@ class QuizzService {
     );
   }
 
-  String _getRandomCoffeeType() {
-    final List<String> coffeeTypes = [
-      'Caramel Capuccino',
-      'Vanilla Capuccino',
-      'Classic Capuccino',
-      'Mocha Cold Brew',
-      'Vanilla Cold Brew',
-      'Classic Cold Brew',
-      'Double Shot Expresso',
-      'Expresso Macchiato',
-      'Classic Expresso',
-    ];
-    final random = Random();
-    final randomIndex = random.nextInt(coffeeTypes.length);
-    return coffeeTypes[randomIndex];
-  }
-
   Future<List<QuizQuestion>> generateRandomQuizQuestions() async {
     final List<String> randomCoffeeTypes = List.generate(
       3,
-      (_) => _getRandomCoffeeType(),
+      (_) => shared.getRandomCoffeeType(),
     );
 
     final List<QuizQuestion> quizQuestions = [];

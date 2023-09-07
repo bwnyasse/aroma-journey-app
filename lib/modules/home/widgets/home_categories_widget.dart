@@ -3,13 +3,19 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_model.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
+import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
 import 'package:aroma_journey/modules/home/pages/home_model.dart';
 import 'package:aroma_journey/modules/shared/shared.dart';
+import 'package:aroma_journey/services/brewing_inventions_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+BrewingInventionService get brewingInventionService =>
+    Modular.get<BrewingInventionService>();
 
 class HomeCategoriesWidget extends StatefulWidget {
   const HomeCategoriesWidget({
@@ -52,7 +58,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                       fontFamily: 'Poppins',
                       fontSize: 20,
                     ),
-              ),
+              ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation2']!),
             ],
           ),
           Padding(
@@ -234,7 +240,202 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                 );
               },
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 10.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Brewing Inventions',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 23.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ).animateOnPageLoad(
+                      animationsMap['textOnPageLoadAnimation2']!),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 10.0, 0.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: FutureBuilder<List<BrewingInventionModel>>(
+                future: brewingInventionService.generateInventions(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  List<BrewingInventionModel> offerListProductRecordList =
+                      snapshot.data!;
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(offerListProductRecordList.length,
+                        (offerListIndex) {
+                      final offerListProductRecord =
+                          offerListProductRecordList[offerListIndex];
+                      return Stack(
+                        children: [
+                          Container(
+                            width: 310.0,
+                            height: 140.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          ),
+                          Container(
+                            width: 300.0,
+                            height: 130.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 5.0,
+                                  color: Color(0x33000000),
+                                  offset: Offset(0.0, 5.0),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Stack(
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    // TODO
+                                    print("Need implementation");
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 10.0, 10.0, 0.0),
+                                        child: Container(
+                                          width: 140.0,
+                                          height: 105.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: CachedNetworkImageProvider(
+                                                'https://images.unsplash.com/photo-1516743619420-154b70a65fea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                                              ),
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 20.0, 0.0, 10.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              FFButtonWidget(
+                                                onPressed: () {
+                                                  print(
+                                                      'limitedButton pressed ...');
+                                                },
+                                                text: 'genAi',
+                                                options: FFButtonOptions(
+                                                  width: 80.0,
+                                                  height: 20.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color: Colors.white,
+                                                        fontSize: 10.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                  elevation: 2.0,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        7.0, 0.0, 7.0, 0.0),
+                                                child: Text(
+                                                  offerListProductRecord
+                                                      .name,
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 16.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

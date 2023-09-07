@@ -6,6 +6,7 @@ import 'package:aroma_journey/modules/product/product_module.dart';
 import 'package:aroma_journey/modules/quizz/quizz_module.dart';
 import 'package:aroma_journey/modules/splash/splash_page.dart';
 import 'package:aroma_journey/services/auth_service.dart';
+import 'package:aroma_journey/services/brewing_inventions_service.dart';
 import 'package:aroma_journey/services/coffee_service.dart';
 import 'package:aroma_journey/services/quizz_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,6 +18,7 @@ class MainModule extends Module {
     i.addSingleton(AuthService.new);
     i.addSingleton(CoffeeService.new);
     i.addSingleton(QuizzService.new);
+    i.addSingleton(BrewingInventionService.new);
   }
 
   @override
