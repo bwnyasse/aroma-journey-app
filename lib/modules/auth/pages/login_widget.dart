@@ -1,12 +1,13 @@
-import 'package:aroma_journey/bloc/auth/auth_bloc.dart';
-import 'package:aroma_journey/bloc/auth/auth_event.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
+import 'package:aroma_journey/modules/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+
+import '../bloc/auth_event.dart';
 
 AuthBloc get authBloc => Modular.get<AuthBloc>();
 

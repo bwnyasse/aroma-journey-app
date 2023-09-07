@@ -10,7 +10,6 @@ import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:aroma_journey/services/brewing_inventions_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -261,7 +260,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 10.0, 0.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: FutureBuilder<List<BrewingInventionModel>>(
@@ -306,7 +305,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                               boxShadow: [
-                                BoxShadow(
+                                const BoxShadow(
                                   blurRadius: 5.0,
                                   color: Color(0x33000000),
                                   offset: Offset(0.0, 5.0),
@@ -329,7 +328,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 10.0, 10.0, 0.0),
                                         child: Container(
                                           width: 140.0,
@@ -337,7 +336,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            image: DecorationImage(
+                                            image: const DecorationImage(
                                               fit: BoxFit.cover,
                                               image: CachedNetworkImageProvider(
                                                 'https://images.unsplash.com/photo-1516743619420-154b70a65fea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
@@ -351,7 +350,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 10.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -369,11 +368,11 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                 options: FFButtonOptions(
                                                   width: 80.0,
                                                   height: 20.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -390,7 +389,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                             FontWeight.normal,
                                                       ),
                                                   elevation: 2.0,
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -400,7 +399,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         7.0, 0.0, 7.0, 0.0),
                                                 child: Text(

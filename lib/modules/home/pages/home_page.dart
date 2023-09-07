@@ -1,9 +1,10 @@
-import 'package:aroma_journey/bloc/auth/auth_bloc.dart';
 import 'package:aroma_journey/modules/home/widgets/home_categories_widget.dart';
 import 'package:aroma_journey/modules/home/widgets/home_header_widget.dart';
-import 'package:aroma_journey/services/auth_service.dart';
+import 'package:aroma_journey/modules/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../auth/bloc/auth_bloc.dart';
 
 AuthBloc get authBloc => Modular.get<AuthBloc>();
 AuthService get authService => Modular.get<AuthService>();

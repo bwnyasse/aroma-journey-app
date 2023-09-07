@@ -7,8 +7,8 @@ class ProductModel extends FlutterFlowModel {
 
   final unfocusNode = FocusNode();
   // State field(s) for coffeeSizeOptions widget.
-  String? coffeeSizeOptionsValue;
-  FormFieldController<List<String>>? coffeeSizeOptionsValueController;
+  String? productSizeOptionsValue;
+  FormFieldController<List<String>>? productSizeOptionsValueController;
 
   /// Initialization and disposal methods.
 

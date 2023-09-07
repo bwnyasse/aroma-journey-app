@@ -1,7 +1,7 @@
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
-import 'package:aroma_journey/services/quizz_service.dart';
+import 'package:aroma_journey/modules/quizz/quizz_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';

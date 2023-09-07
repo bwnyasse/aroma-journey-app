@@ -1,8 +1,8 @@
+import 'package:aroma_journey/modules/auth/auth_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'auth_event.dart';
-import '../../services/auth_service.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

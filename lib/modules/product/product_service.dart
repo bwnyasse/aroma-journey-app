@@ -1,13 +1,5 @@
 import 'package:aroma_journey/backend/palm/palm_util.dart';
 
-class CoffeeServiceException implements Exception {
-  final Object error;
-  final String message;
-
-  CoffeeServiceException(this.message, this.error) {
-    print(error);
-  }
-}
 
 const String exampleInput1 =
     'Could you provide step-by-step instructions on how to brew a delicious Mocha Cold Brew ? The ouput must be in markdown format.';
@@ -96,7 +88,7 @@ Ultimately, the health effects of enjoying Vanilla Cappuccino depend on your ind
 In summary, Vanilla Cappuccino can be a delightful addition to your routine when enjoyed mindfully. It's advisable to consider factors such as sugar content, caloric intake, and caffeine sensitivity. Making informed choices based on your own health goals will help you savor this beverage in a way that aligns with your preferences and well-being.
 ''';
 
-class CoffeeService {
+class ProductService {
   Future<Map<String, String>> multiGeneration(String coffee) {
     return Future.wait([
       _generativeAIPromptCoffeJourney(

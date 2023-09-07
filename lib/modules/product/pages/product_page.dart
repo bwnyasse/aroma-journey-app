@@ -1,9 +1,6 @@
 import 'dart:ui';
 
 import 'package:aroma_journey/backend/schema/product_record.dart';
-import 'package:aroma_journey/bloc/coffee/coffee_bloc.dart';
-import 'package:aroma_journey/bloc/coffee/coffee_event.dart';
-import 'package:aroma_journey/bloc/coffee/coffee_state.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_icon_button.dart';
@@ -11,6 +8,9 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_toggle_icon.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_util.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
+import 'package:aroma_journey/modules/product/bloc/product_bloc.dart';
+import 'package:aroma_journey/modules/product/bloc/product_event.dart';
+import 'package:aroma_journey/modules/product/bloc/product_state.dart';
 import 'package:aroma_journey/modules/product/pages/product_model.dart';
 import 'package:asuka/snackbars/asuka_snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -89,8 +89,8 @@ class _ProductPageState extends State<ProductPage>
   void initState() {
     super.initState();
     _model = createModel(context, () => ProductModel());
-    BlocProvider.of<CoffeeBloc>(context)
-        .add(CoffeeInitEvent(widget.productRecord.name));
+    BlocProvider.of<ProductBloc>(context)
+        .add(ProductInitEvent(widget.productRecord.name));
   }
 
   @override
@@ -101,19 +101,19 @@ class _ProductPageState extends State<ProductPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CoffeeBloc, CoffeeState>(
-      bloc: BlocProvider.of<CoffeeBloc>(context),
+    return BlocListener<ProductBloc, ProductState>(
+      bloc: BlocProvider.of<ProductBloc>(context),
       listener: (context, state) {
-        if (state is CoffeeLoadingState) {
-          AsukaSnackbar.warning("CoffeeLoadingState").show();
+        if (state is ProductLoadingState) {
+          AsukaSnackbar.warning("ProductLoadingState").show();
         }
-        if (state is CoffeeErrorState) {
-          AsukaSnackbar.alert("CoffeeErrorState").show();
+        if (state is ProductErrorState) {
+          AsukaSnackbar.alert("ProductErrorState").show();
         }
-        if (state is CoffeeSuccessState) {
-          AsukaSnackbar.success("CoffeeSuccessState").show();
+        if (state is ProductSuccessState) {
+          AsukaSnackbar.success("ProductSuccessState").show();
         }
-        if (state is CoffeeContentState) {
+        if (state is ProductContentState) {
           print(state.content);
         }
       },
@@ -161,7 +161,7 @@ class _ProductPageState extends State<ProductPage>
             alignment: AlignmentDirectional(0.0, -1.0),
             child: Image(
               // 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-              image: AssetImage('assets/background_coffee.png'),
+              image: AssetImage('assets/background_Product.png'),
               width: double.infinity,
               height: 500.0,
               fit: BoxFit.cover,
@@ -419,7 +419,7 @@ class _ProductPageState extends State<ProductPage>
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Coffee Journey',
+                                      'Product Journey',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -430,9 +430,9 @@ class _ProductPageState extends State<ProductPage>
                                   ],
                                 ),
                               ),
-                              BlocBuilder<CoffeeBloc, CoffeeState>(
+                              BlocBuilder<ProductBloc, ProductState>(
                                   builder: (context, state) {
-                                if (state is CoffeeLoadingState) {
+                                if (state is ProductLoadingState) {
                                   return const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 100, 0, 0),
@@ -446,7 +446,7 @@ class _ProductPageState extends State<ProductPage>
                                     ),
                                   );
                                 }
-                                if (state is CoffeeSuccessState) {
+                                if (state is ProductSuccessState) {
                                   palm2Response = state.response;
                                   return Column(
                                     children: [
@@ -461,7 +461,7 @@ class _ProductPageState extends State<ProductPage>
                                           ],
                                           onChanged: (val) {
                                             setState(() {
-                                              _model.coffeeSizeOptionsValue =
+                                              _model.productSizeOptionsValue =
                                                   val?.first;
                                             });
                                           },
@@ -511,11 +511,11 @@ class _ProductPageState extends State<ProductPage>
                                           rowSpacing: 12.0,
                                           multiselect: false,
                                           initialized:
-                                              _model.coffeeSizeOptionsValue !=
+                                              _model.productSizeOptionsValue !=
                                                   null,
                                           alignment: WrapAlignment.start,
                                           controller: _model
-                                                  .coffeeSizeOptionsValueController ??=
+                                                  .productSizeOptionsValueController ??=
                                               FormFieldController<List<String>>(
                                             ['Brewing'],
                                           ),
@@ -560,7 +560,7 @@ class _ProductPageState extends State<ProductPage>
                                                       child: Positioned.fill(
                                                         child: AnimatedOpacity(
                                                           opacity:
-                                                              _model.coffeeSizeOptionsValue ==
+                                                              _model.productSizeOptionsValue ==
                                                                       key
                                                                   ? 1.0
                                                                   : 0.0,
