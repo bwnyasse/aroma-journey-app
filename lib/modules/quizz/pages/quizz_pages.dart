@@ -137,7 +137,6 @@ class _QuizzPageState extends State<QuizzPage> {
   void initState() {
     quizzService.generateRandomQuizQuestions().then((value) {
       setState(() {
-        print(value);
         questions = value;
       });
     });
@@ -175,7 +174,7 @@ class _QuizzPageState extends State<QuizzPage> {
                             // Generated code for this Text Widget...
                             Expanded(
                               child: Text(
-                                "Today's Quiz",
+                                "Today's Quiz by PaLM API",
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
