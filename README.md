@@ -6,6 +6,7 @@
 
 <div align="center">
 <video autoplay loop muted playsinline src="screenshot/video.mp4" controls="controls" style="max-width: 280px;"></video>
+<video autoplay loop muted playsinline src="screenshot/video.mov" controls="controls" style="max-width: 280px;"></video>
   <img src="screenshot/2.png" alt="Screenshot 2" width="280">
   <img src="screenshot/3.png" alt="Screenshot 2" width="280"> 
 </div>
