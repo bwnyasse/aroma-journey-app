@@ -5,7 +5,7 @@
 
 
 <div align="center">
-  <img src="https://storage.googleapis.com/storage_fichiers_blog_bwnyasse_net/aromajourney.gif" alt="Screenshot 2" width="230">
+  <img src="screenshot/1.png" alt="Screenshot 2" width="230">
   <img src="screenshot/2.png" alt="Screenshot 2" width="230">
   <img src="screenshot/3.png" alt="Screenshot 2" width="230"> 
 </div>
