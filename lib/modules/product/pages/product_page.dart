@@ -12,6 +12,7 @@ import 'package:aroma_journey/modules/product/bloc/product_bloc.dart';
 import 'package:aroma_journey/modules/product/bloc/product_event.dart';
 import 'package:aroma_journey/modules/product/bloc/product_state.dart';
 import 'package:aroma_journey/modules/product/pages/product_model.dart';
+import 'package:aroma_journey/modules/shared/loading_indicator.dart';
 import 'package:asuka/snackbars/asuka_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -127,17 +128,7 @@ class _ProductPageState extends State<ProductPage>
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  ),
-                );
+                return const LoadinIndicator();
               } else {
                 final stackProductRecord = snapshot.data!;
                 return generateMainContent(context, stackProductRecord);
@@ -197,8 +188,7 @@ class _ProductPageState extends State<ProductPage>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            //stackProductRecord.offerDescription,
-                            "Test offer",
+                            stackProductRecord.offerDescription,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -419,7 +409,7 @@ class _ProductPageState extends State<ProductPage>
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Product Journey',
+                                      'Details',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -436,14 +426,7 @@ class _ProductPageState extends State<ProductPage>
                                   return const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 100, 0, 0),
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.blue),
-                                        strokeWidth: 5.0,
-                                      ),
-                                    ),
+                                    child: LoadinIndicator(),
                                   );
                                 }
                                 if (state is ProductSuccessState) {

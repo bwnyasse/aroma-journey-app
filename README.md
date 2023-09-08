@@ -3,14 +3,16 @@
 "Aroma Journey" is an immersive and enlightening Flutter application that invites users to embark on a captivating exploration of the world of coffee. With a harmonious blend of rich narratives, interactive quizzes, and AI-powered insights, Aroma Journey transforms coffee appreciation into an engaging adventure.
 
 
+
 <div align="center">
-  <img src="screenshot/1.png" alt="Screenshot 1" width="280">
+<video autoplay loop muted playsinline src="screenshot/video.mov" controls="controls" style="max-width: 280px;"></video>
   <img src="screenshot/2.png" alt="Screenshot 2" width="280">
-   
+  <img src="screenshot/3.png" alt="Screenshot 2" width="280"> 
 </div>
 <div align="center">
- <img src="screenshot/3.png" alt="Screenshot 3" width="280">
   <img src="screenshot/4.png" alt="Screenshot 3" width="280">
+  <img src="screenshot/5.png" alt="Screenshot 3" width="280">
+  <img src="screenshot/6.png" alt="Screenshot 3" width="280">
 </div>
 
 ## Key Features

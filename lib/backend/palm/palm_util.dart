@@ -2,6 +2,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_language_api/google_generative_language_api.dart';
 
 class PaLMUtil {
+  
+  /// Generates text from a prompt using the PaLM 2.0 model.
   static Future<String> generateTextFormPaLM({
     required String exampleInput1,
     required String exampleOutput1,

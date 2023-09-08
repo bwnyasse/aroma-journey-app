@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:aroma_journey/backend/palm/palm_util.dart';
+import 'package:aroma_journey/modules/shared/shared.dart' as shared;
+import 'package:aroma_journey/modules/product/model/product_invention_model.dart';
 
-
-const String exampleInput1 =
-    'Could you provide step-by-step instructions on how to brew a delicious Mocha Cold Brew ? The ouput must be in markdown format.';
-const String exampleOutput1 =
-    '''Here's a step-by-step guide to brewing a delightful Mocha Cold Brew:
+class PromptProductDetail {
+  static const String exampleInput1 =
+      'Could you provide step-by-step instructions on how to brew a delicious Mocha Cold Brew ? The ouput must be in markdown format.';
+  static const String exampleOutput1 =
+      '''Here's a step-by-step guide to brewing a delightful Mocha Cold Brew:
 
 1. **Gather Your Ingredients:**
    - Coarsely ground coffee beans
@@ -41,10 +45,10 @@ const String exampleOutput1 =
 
 Remember, the key to a delicious Mocha Cold Brew is finding the right balance between coffee, chocolate, and milk. Enjoy your brewing adventure!''';
 
-const String exampleInput2 =
-    'Could you describe the flavor profile of Classic Espresso, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format.';
-const String exampleOutput2 =
-    '''Let's delve into the captivating flavor journey of Classic Espresso:
+  static const String exampleInput2 =
+      'Could you describe the flavor profile of Classic Espresso, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format.';
+  static const String exampleOutput2 =
+      '''Let's delve into the captivating flavor journey of Classic Espresso:
 
 **Aroma:**
 As you bring a cup of Classic Espresso to your nose, you'll be greeted by a rich and invigorating aroma. The scent is deep and earthy, with prominent notes of roasted coffee beans and a hint of bittersweet cocoa. The aroma sets the stage for the bold and complex taste that's about to unfold.
@@ -61,10 +65,10 @@ The journey concludes with a smooth and lingering finish. The bitterness of the 
 In summary, Classic Espresso is a symphony of flavors that intertwine to create a remarkable experience. From the deep and earthy aroma to the interplay of dark chocolate, nutty undertones, and a balanced finish, this espresso embodies the essence of traditional craftsmanship. Whether enjoyed on its own or as the foundation for other coffee creations, Classic Espresso is a timeless journey of taste that coffee enthusiasts will thoroughly enjoy.
 ''';
 
-const String exampleInput3 =
-    '''Could you provide insights into the potential health effects of incorporating Vanilla Cappuccino into one's routine, including considerations related to ingredients and nutritional aspects?''';
-const String exampleOutput3 =
-    '''Could you provide insights into the potential health effects of incorporating Vanilla Cappuccino into one's routine, including considerations related to ingredients and nutritional aspects?
+  static const String exampleInput3 =
+      '''Could you provide insights into the potential health effects of incorporating Vanilla Cappuccino into one's routine, including considerations related to ingredients and nutritional aspects?''';
+  static const String exampleOutput3 =
+      '''Could you provide insights into the potential health effects of incorporating Vanilla Cappuccino into one's routine, including considerations related to ingredients and nutritional aspects?
 output: Let's explore the potential health effects and considerations when incorporating Vanilla Cappuccino into your routine:
 
 **Ingredients and Nutritional Aspects:**
@@ -87,15 +91,50 @@ Ultimately, the health effects of enjoying Vanilla Cappuccino depend on your ind
 
 In summary, Vanilla Cappuccino can be a delightful addition to your routine when enjoyed mindfully. It's advisable to consider factors such as sugar content, caloric intake, and caffeine sensitivity. Making informed choices based on your own health goals will help you savor this beverage in a way that aligns with your preferences and well-being.
 ''';
+}
+
+class PromptProductInvention {
+  static const String exampleInput1 =
+      '''input: Create a new coffee creation in the "Cold Brew" category. Provide its details in JSON format. { "category_name": "Cold Brew", "name": "", "info": "", "offer_description": "" }''';
+  static const String exampleOutput1 =
+      '''{"category_name":"Cold Brew","name":"Tropical Chill","info":"Tropical Chill is a refreshing cold brew coffee with a tropical twist. It's crafted using the finest cold brew method, resulting in a smooth and naturally sweet coffee base. Infused with hints of coconut and a touch of pineapple essence, this unique creation captures the essence of a beachside getaway in every sip.","offer_description":"Indulge in the paradise of flavor with Tropical Chill. Experience the soothing coolness of cold brew coffee combined with the exotic allure of the tropics. This coffee creation promises a delightful escape from the ordinary, making it the perfect companion for those seeking a refreshing and revitalizing coffee experience."}''';
+
+  static const String exampleInput2 =
+      '''input: Create a new coffee creation in the "Cappuccino" category. Provide its details in JSON format. { "category_name": "Cappuccino", "name": "", "info": "", "offer_description": "" }''';
+  static const String exampleOutput2 =
+      '''{"category_name":"Cappuccino","name":"Velvet Bliss","info":"Velvet Bliss is an exquisite cappuccino creation that redefines indulgence. It starts with a rich, double-shot espresso base, meticulously blended with velvety steamed milk. The magic happens with a drizzle of artisanal dark chocolate and a whisper of Madagascar vanilla, culminating in a coffee experience that's pure luxury.","offer_description":"Elevate your senses with Velvet Bliss, where every sip is an invitation to luxury. This cappuccino masterpiece combines the boldness of espresso with the silkiness of steamed milk, kissed by the sweetness of dark chocolate and vanilla. It's the epitome of coffee opulence, crafted to delight the most discerning coffee enthusiasts."}''';
+
+  static const String exampleInput3 =
+      '''input: Create a new coffee creation in the "Espresso" category. Provide its details in JSON format. { "category_name": "Espresso", "name": "", "info": "", "offer_description": "" }''';
+  static const String exampleOutput3 =
+      '''{"category_name":"Espresso","name":"Midnight Elegance","info":"Midnight Elegance is a bold and robust espresso that combines the intensity of dark roasted beans with a hint of smoky aroma. Its unique profile is characterized by a velvety texture and a rich, full-bodied flavor. This espresso boasts a satisfyingly long-lasting crema, making it perfect for those who savor the essence of strong, aromatic coffee.","offer_description":"Experience the allure of Midnight Elegance, where every sip is an indulgence in the dark artistry of espresso. Specially crafted for espresso aficionados, this coffee creation promises a journey into the depths of flavor. Discover a world of boldness and complexity with each cup."}''';
+}
 
 class ProductService {
+  Future<List<ProductInventionModel>> generateInventions() async {
+    final List<String> randomCategory = List.generate(
+      2,
+      (_) => shared.getRandomCategory(),
+    );
+
+    final List<ProductInventionModel> records = [];
+
+    for (final category in randomCategory) {
+      final String output = await _generatedProductInventions(category);
+      final model = ProductInventionModel.fromJson(json.decode(output));
+      records.add(model);
+    }
+
+    return records;
+  }
+
   Future<Map<String, String>> multiGeneration(String coffee) {
     return Future.wait([
-      _generativeAIPromptCoffeJourney(
+      _generatedProductDetail(
           "Could you provide step-by-step instructions on how to brew a delicious $coffee ? The ouput must be in markdown format."),
-      _generativeAIPromptCoffeJourney(
+      _generatedProductDetail(
           "Could you describe the flavor profile of $coffee, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format."),
-      _generativeAIPromptCoffeJourney(
+      _generatedProductDetail(
           "Could you provide insights into the potential health effects of incorporating $coffee into one's routine, including considerations related to ingredients and nutritional aspects?"),
     ]).then((value) => {
           'Brewing': value[0],
@@ -104,14 +143,26 @@ class ProductService {
         });
   }
 
-  Future<String> _generativeAIPromptCoffeJourney(String input) async =>
+  Future<String> _generatedProductInventions(String category) async =>
       PaLMUtil.generateTextFormPaLM(
-        exampleInput1: exampleInput1,
-        exampleOutput1: exampleOutput1,
-        exampleInput2: exampleInput2,
-        exampleOutput2: exampleOutput2,
-        exampleInput3: exampleInput3,
-        exampleOutput3: exampleOutput3,
+        exampleInput1: PromptProductInvention.exampleInput1,
+        exampleOutput1: PromptProductInvention.exampleOutput1,
+        exampleInput2: PromptProductInvention.exampleInput2,
+        exampleOutput2: PromptProductInvention.exampleOutput2,
+        exampleInput3: PromptProductInvention.exampleInput3,
+        exampleOutput3: PromptProductInvention.exampleOutput3,
+        input:
+            """Create a new coffee creation in the "$category" category. Provide its details in JSON format. { "category_name": "$category", "name": "", "info": "", "offer_description": "" }""",
+      );
+
+  Future<String> _generatedProductDetail(String input) async =>
+      PaLMUtil.generateTextFormPaLM(
+        exampleInput1: PromptProductDetail.exampleInput1,
+        exampleOutput1: PromptProductDetail.exampleOutput1,
+        exampleInput2: PromptProductDetail.exampleInput2,
+        exampleOutput2: PromptProductDetail.exampleOutput2,
+        exampleInput3: PromptProductDetail.exampleInput3,
+        exampleOutput3: PromptProductDetail.exampleOutput3,
         input: input,
       );
 }

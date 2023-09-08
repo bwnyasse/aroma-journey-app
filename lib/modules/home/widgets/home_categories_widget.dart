@@ -6,15 +6,16 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aroma_journey/extra/flutter_flow/form_field_controller.dart';
 import 'package:aroma_journey/modules/home/pages/home_model.dart';
+import 'package:aroma_journey/modules/product/model/product_invention_model.dart';
+import 'package:aroma_journey/modules/product/product_service.dart';
+import 'package:aroma_journey/modules/shared/loading_indicator.dart';
 import 'package:aroma_journey/modules/shared/shared.dart';
-import 'package:aroma_journey/services/brewing_inventions_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-BrewingInventionService get brewingInventionService =>
-    Modular.get<BrewingInventionService>();
+ProductService get productService => Modular.get<ProductService>();
 
 class HomeCategoriesWidget extends StatefulWidget {
   const HomeCategoriesWidget({
@@ -263,24 +264,14 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 10.0, 0.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: FutureBuilder<List<BrewingInventionModel>>(
-                future: brewingInventionService.generateInventions(),
+              child: FutureBuilder<List<ProductInventionModel>>(
+                future: productService.generateInventions(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
+                    return const LoadinIndicator();
                   }
-                  List<BrewingInventionModel> offerListProductRecordList =
+                  List<ProductInventionModel> offerListProductRecordList =
                       snapshot.data!;
                   return Row(
                     mainAxisSize: MainAxisSize.max,
@@ -304,8 +295,8 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
-                                const BoxShadow(
+                              boxShadow: const [
+                                BoxShadow(
                                   blurRadius: 5.0,
                                   color: Color(0x33000000),
                                   offset: Offset(0.0, 5.0),
@@ -328,8 +319,8 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 10.0, 10.0, 0.0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(10.0, 10.0, 10.0, 0.0),
                                         child: Container(
                                           width: 140.0,
                                           height: 105.0,
@@ -349,9 +340,8 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 20.0, 0.0, 10.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 20.0, 0.0, 10.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -368,13 +358,14 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                 options: FFButtonOptions(
                                                   width: 80.0,
                                                   height: 20.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 0.0, 0.0, 0.0),
                                                   iconPadding:
                                                       const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
+                                                          .fromSTEB(
+                                                          0.0, 0.0, 0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
@@ -399,12 +390,12 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         7.0, 0.0, 7.0, 0.0),
                                                 child: Text(
-                                                  offerListProductRecord
-                                                      .name,
+                                                  offerListProductRecord.name,
                                                   textAlign: TextAlign.start,
                                                   style: FlutterFlowTheme.of(
                                                           context)
