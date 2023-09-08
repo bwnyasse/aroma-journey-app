@@ -5,14 +5,14 @@
 
 
 <div align="center">
-  <img src="https://storage.googleapis.com/storage_fichiers_blog_bwnyasse_net/aromajourney.gif" alt="Screenshot 2" width="200">
-  <img src="screenshot/2.png" alt="Screenshot 2" width="200">
-  <img src="screenshot/3.png" alt="Screenshot 2" width="200"> 
+  <img src="https://storage.googleapis.com/storage_fichiers_blog_bwnyasse_net/aromajourney.gif" alt="Screenshot 2" width="230">
+  <img src="screenshot/2.png" alt="Screenshot 2" width="230">
+  <img src="screenshot/3.png" alt="Screenshot 2" width="230"> 
 </div>
 <div align="center">
-  <img src="screenshot/4.png" alt="Screenshot 3" width="200">
-  <img src="screenshot/5.png" alt="Screenshot 3" width="200">
-  <img src="screenshot/6.png" alt="Screenshot 3" width="200">
+  <img src="screenshot/4.png" alt="Screenshot 3" width="230">
+  <img src="screenshot/5.png" alt="Screenshot 3" width="230">
+  <img src="screenshot/6.png" alt="Screenshot 3" width="230">
 </div>
 
 ## Key Features
