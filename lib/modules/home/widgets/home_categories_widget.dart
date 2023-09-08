@@ -248,7 +248,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
               children: [
                 Expanded(
                   child: Text(
-                    'Brewing Inventions',
+                    'Brewing by PaLM API',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Poppins',
                           fontSize: 23.0,
@@ -271,14 +271,14 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                   if (!snapshot.hasData) {
                     return const LoadinIndicator();
                   }
-                  List<ProductInventionModel> offerListProductRecordList =
+                  List<ProductInventionModel> productInventionModelList =
                       snapshot.data!;
                   return Row(
                     mainAxisSize: MainAxisSize.max,
-                    children: List.generate(offerListProductRecordList.length,
+                    children: List.generate(productInventionModelList.length,
                         (offerListIndex) {
-                      final offerListProductRecord =
-                          offerListProductRecordList[offerListIndex];
+                      final productInventionModel =
+                          productInventionModelList[offerListIndex];
                       return Stack(
                         children: [
                           Container(
@@ -312,8 +312,8 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    // TODO
-                                    print("Need implementation");
+                                    Modular.to.navigate('/product/invention/',
+                                        arguments: productInventionModel);
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -351,8 +351,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                             children: [
                                               FFButtonWidget(
                                                 onPressed: () {
-                                                  print(
-                                                      'limitedButton pressed ...');
+                                                  //FIXME nothing to do
                                                 },
                                                 text: 'genAi',
                                                 options: FFButtonOptions(
@@ -394,18 +393,40 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
                                                     const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                         7.0, 0.0, 7.0, 0.0),
-                                                child: Text(
-                                                  offerListProductRecord.name,
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 16.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      "${productInventionModel.categoryName}:",
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      productInventionModel
+                                                          .name,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],

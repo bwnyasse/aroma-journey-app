@@ -2,8 +2,8 @@ import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aroma_journey/modules/quizz/quizz_service.dart';
+import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 QuizzService get quizzService => Modular.get<QuizzService>();
@@ -132,33 +132,6 @@ class _QuizzPageState extends State<QuizzPage> {
 
   List<QuizQuestion> questions = [];
   String resultStatus = '';
-
-  final animationsMap = {
-    'textOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: const Offset(0, -34),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'columnOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.elasticOut,
-          delay: 0.ms,
-          duration: 1190.ms,
-          begin: const Offset(0, 51),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {

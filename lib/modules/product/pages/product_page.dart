@@ -13,9 +13,9 @@ import 'package:aroma_journey/modules/product/bloc/product_event.dart';
 import 'package:aroma_journey/modules/product/bloc/product_state.dart';
 import 'package:aroma_journey/modules/product/pages/product_model.dart';
 import 'package:aroma_journey/modules/shared/loading_indicator.dart';
+import 'package:aroma_journey/modules/shared/shared.dart';
 import 'package:asuka/snackbars/asuka_snack_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -38,53 +38,6 @@ class _ProductPageState extends State<ProductPage>
   Map<String, String> palm2Response = {};
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = {
-    'blurOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        ShakeEffect(
-          curve: Curves.easeInOut,
-          delay: 80.ms,
-          duration: 1000.ms,
-          hz: 5,
-          offset: const Offset(0.0, 0.0),
-          rotation: 0.105,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 80.ms,
-          duration: 1000.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(1.0, 1.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.0, 100.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.6, 0.6),
-          end: const Offset(1.0, 1.0),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
@@ -202,7 +155,9 @@ class _ProductPageState extends State<ProductPage>
                     ),
                   ),
                 ),
-              ).animateOnPageLoad(animationsMap['blurOnPageLoadAnimation']!),
+              ).animateOnPageLoad(
+                animationsMap['blurOnPageLoadAnimation']!,
+              ),
             ),
           Align(
             alignment: const AlignmentDirectional(0.0, -0.87),
@@ -511,7 +466,7 @@ class _ProductPageState extends State<ProductPage>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Generative ( experimental )',
+                                              'Generate by PaLM API',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
