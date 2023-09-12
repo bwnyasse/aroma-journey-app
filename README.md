@@ -50,13 +50,13 @@ Here is a list of upcoming features and enhancements that I am planning for the 
 - [ ] **User-Prompted Questions:** Introduce a user-input feature that allows users to prompt the app to generate specific questions or information about coffee, promoting interactivity and customization.
 
 ## Technologies Used
-- **Flutter:** A framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- **[Flutter](https://flutter.dev/):** A framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
 
-- **Firebase Auth:** Used for user authentication and management.
+- **[Firebase Auth](https://firebase.google.com/):** Used for user authentication and management.
 
-- **Palm API:** Leveraged for AI-powered text generation, creating engaging quizzes and informative coffee details.
+- **[Palm API](https://developers.generativeai.google/):** Leveraged for AI-powered text generation, creating engaging quizzes and informative coffee details.
 
-- **MakerSuite:** Utilized for data validation and generation, enhancing the user experience by providing accurate and relevant content.
+- **[MakerSuite](https://developers.generativeai.google/products/makersuite):** Utilized for data validation and generation, enhancing the user experience by providing accurate and relevant content.
 
 ## Installation and Setup
 1. Clone this repository to your local machine.

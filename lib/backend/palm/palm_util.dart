@@ -2,7 +2,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_language_api/google_generative_language_api.dart';
 
 class PaLMUtil {
-  
   /// Generates text from a prompt using the PaLM 2.0 model.
   static Future<String> generateTextFormPaLM({
     required String exampleInput1,
@@ -26,7 +25,7 @@ class PaLMUtil {
     // PaLM 2.0 model
     String textModel = 'models/text-bison-001';
 
-    //  Prompt
+    // Construct the prompt string with input examples
     String promptString = '''input: $exampleInput1
     output: $exampleOutput1
     
@@ -39,7 +38,7 @@ class PaLMUtil {
     input: $input
     output:''';
 
-    // Generate text.
+    // Configure the text generation request
     GenerateTextRequest textRequest = GenerateTextRequest(
         prompt: TextPrompt(text: promptString),
         // optional, 0.0 always uses the highest-probability result
@@ -56,6 +55,7 @@ class PaLMUtil {
         stopSequences: [],
         // optional, safety settings
         safetySettings: const [
+          // Define safety settings to filter out harmful content
           SafetySetting(
               category: HarmCategory.derogatory,
               threshold: HarmBlockThreshold.lowAndAbove),
@@ -75,11 +75,15 @@ class PaLMUtil {
               category: HarmCategory.dangerous,
               threshold: HarmBlockThreshold.mediumAndAbove),
         ]);
+
+    // Call the PaLM API to generate text
     final GeneratedText response = await GenerativeLanguageAPI.generateText(
       modelName: textModel,
       request: textRequest,
       apiKey: apiKey,
     );
+
+    // Extract and return the generated text
     if (response.candidates.isNotEmpty) {
       TextCompletion candidate = response.candidates.first;
       return candidate.output;
