@@ -88,6 +88,11 @@ Contributions are welcome! If you'd like to contribute to "Aroma Journey," pleas
 ## License
 This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
 
+## DEMO
+
+https://github.com/bwnyasse/aroma-journey-app/assets/5323628/dc64891c-c5a4-4bb6-b733-e4c1ef3caa43
+
+
 <!-- Acknowledgments -->
 ## Acknowledgments
 ...
