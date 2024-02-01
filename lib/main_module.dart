@@ -12,10 +12,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 class MainModule extends Module {
   @override
   void binds(i) {
-    i.addSingleton(AuthBloc.new);
     i.addSingleton(AuthService.new);
     i.addSingleton(ProductService.new);
     i.addSingleton(QuizzService.new);
+    i.addSingleton(AuthBloc.new);
   }
 
   @override
