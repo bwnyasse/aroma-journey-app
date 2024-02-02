@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:aroma_journey/backend/ai/ai_util.dart';
-import 'package:aroma_journey/backend/palm/palm_util.dart';
 import 'package:aroma_journey/modules/shared/shared.dart' as shared;
 import 'package:aroma_journey/modules/product/model/product_invention_model.dart';
 
@@ -132,7 +131,7 @@ class ProductService {
   Future<Map<String, String>> multiGeneration(String coffee) {
     return Future.wait([
       _generatedProductDetail(
-          "Could you provide step-by-step instructions on how to brew a delicious $coffee ? The ouput must be in markdown format."),
+          "Could you provide step-by-step instructions on how to brew a delicious $coffee ? The output must be in markdown format."),
       _generatedProductDetail(
           "Could you describe the flavor profile of $coffee, highlighting its aroma, primary taste notes, and any undertones that coffee enthusiasts can expect to savor? The ouput must be in markdown format."),
       _generatedProductDetail(

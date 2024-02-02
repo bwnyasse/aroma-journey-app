@@ -19,7 +19,8 @@ class OnboardingPageConstants {
       'https://images.unsplash.com/photo-1517640033243-dc06bb716df5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4NTA3OTI3NA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080';
 
   static const String title = """Aroma Journey,
-  Coffee's Stories""";
+  Coffee's Stories 
+  by Gemini""";
 
   static const String subTitle = """Explore, Sip, and 
   Connect Through Every Cup""";
@@ -117,8 +118,8 @@ class LoginWidget extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 70.0),
-                          child: Row(
+                              0.0, 0.0, 0.0, 40.0),
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -131,6 +132,37 @@ class LoginWidget extends StatelessWidget {
                                   "assets/google.svg",
                                   width: 32,
                                 ),
+                                options: FFButtonOptions(
+                                  width: 240.0,
+                                  height: 60.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 2.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              const SizedBox(height:10),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  authBloc.add(AuthLoginWithAnonymousEvent());
+                                },
+                                text: 'Anonymous',
                                 options: FFButtonOptions(
                                   width: 240.0,
                                   height: 60.0,

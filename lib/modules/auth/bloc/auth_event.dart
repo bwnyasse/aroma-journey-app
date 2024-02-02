@@ -17,6 +17,11 @@ class AuthLoadingEvent extends AuthEvent {}
 class AuthLoginWithGoogleEvent extends AuthEvent {}
 
 ///
+/// Event triggered when user try to log with Firebase Anonymous
+///
+class AuthLoginWithAnonymousEvent extends AuthEvent {}
+
+///
 /// Event triggered when Auth is ok
 ///
 class AuthSuccessEvent extends AuthEvent {}

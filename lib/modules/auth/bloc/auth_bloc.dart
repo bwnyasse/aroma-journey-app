@@ -8,7 +8,10 @@ import 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitState()) {
     on<AuthInitEvent>((event, emit) => _onAuthInitEvent(emit));
-    on<AuthLoginWithGoogleEvent>((event, emit) => _onAuthLoginEvent(emit));
+    on<AuthLoginWithGoogleEvent>(
+        (event, emit) => _onAuthLoginEvent(emit, false));
+    on<AuthLoginWithAnonymousEvent>(
+        (event, emit) => _onAuthLoginEvent(emit, true));
     on<AuthSuccessEvent>((event, emit) => _onAuthSuccessEvent(emit));
     on<AuthFailedEvent>((event, emit) => _onAuthFailedEvent(emit));
     on<AuthLoadingEvent>((event, emit) => emit(AuthLoadingState()));
@@ -35,9 +38,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ///
   /// On AuthLoginWithGoogleEvent
   ///
-  void _onAuthLoginEvent(Emitter<AuthState> emit) async {
+  void _onAuthLoginEvent(Emitter<AuthState> emit, bool anonymous) async {
     try {
-      await service.signInWithGoogle();
+      anonymous
+          ? await service.signInAnoymously()
+          : await service.signInWithGoogle();
       final isSignedIn = service.isSignedIn();
       if (isSignedIn) {
         final currentUser = service.getUser();

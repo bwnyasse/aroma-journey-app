@@ -26,6 +26,5 @@ class LoadinIndicator extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

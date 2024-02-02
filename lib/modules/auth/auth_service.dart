@@ -16,6 +16,17 @@ class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  Future<CurrentUser?> signInAnoymously() async {
+    try {
+      await _firebaseAuth.signInAnonymously();
+      // Return the signed-in user's information
+      return getUser();
+    } on FirebaseAuthException catch (e) {
+      // Handle any errors that occur during sign-in
+      throw AuthServiceException('signInAnoymously error', e);
+    }
+  }
+
   ///
   /// User wants to sign in with Google Credentials
   ///
@@ -72,7 +83,7 @@ class AuthService {
 
     return CurrentUser(
       email: user?.email ?? 'notfound@email.com',
-      displayName: user?.displayName ?? 'notfound',
+      displayName: user?.displayName ?? 'Anonymous',
       photoURL: user?.photoURL?.replaceAll("s96-c", "s300-c") ??
           'https://source.unsplash.com/XOhI_kW_TaM',
     );
