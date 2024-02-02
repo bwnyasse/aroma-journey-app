@@ -49,6 +49,8 @@ dependencies:
   #firebase_app_check: ^0.1.5+2
   flutter_dotenv: ^5.1.0
   flutter_markdown: ^0.6.17+2
+  google_generative_ai:
+    path: ../generative-ai-dart/pkgs/google_generative_ai/
 
 dev_dependencies:
   flutter_test:

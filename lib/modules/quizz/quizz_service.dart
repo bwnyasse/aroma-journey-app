@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/backend/palm/palm_util.dart';
 import 'package:aroma_journey/modules/quizz/pages/quizz_pages.dart';
 import 'package:aroma_journey/modules/shared/shared.dart' as shared;
@@ -48,7 +49,7 @@ class QuizzService {
   }
 
   Future<String> _generativeAIQuizzCoffeJourney(String coffee) async =>
-      PaLMUtil.generateTextFormPaLM(
+      AiUtil.generateText(
         exampleInput1: exampleInput1,
         exampleOutput1: exampleOutput1,
         exampleInput2: exampleInput2,

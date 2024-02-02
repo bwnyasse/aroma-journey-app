@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/backend/palm/palm_util.dart';
 import 'package:aroma_journey/modules/shared/shared.dart' as shared;
 import 'package:aroma_journey/modules/product/model/product_invention_model.dart';
@@ -144,7 +145,7 @@ class ProductService {
   }
 
   Future<String> _generatedProductInventions(String category) async =>
-      PaLMUtil.generateTextFormPaLM(
+      AiUtil.generateText(
         exampleInput1: PromptProductInvention.exampleInput1,
         exampleOutput1: PromptProductInvention.exampleOutput1,
         exampleInput2: PromptProductInvention.exampleInput2,
@@ -156,7 +157,7 @@ class ProductService {
       );
 
   Future<String> _generatedProductDetail(String input) async =>
-      PaLMUtil.generateTextFormPaLM(
+      AiUtil.generateText(
         exampleInput1: PromptProductDetail.exampleInput1,
         exampleOutput1: PromptProductDetail.exampleOutput1,
         exampleInput2: PromptProductDetail.exampleInput2,

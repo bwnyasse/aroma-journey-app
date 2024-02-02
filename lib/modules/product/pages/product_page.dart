@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/backend/schema/product_record.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
@@ -466,7 +467,7 @@ class _ProductPageState extends State<ProductPage>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Generate by PaLM API',
+                                              "Generate by ${AiUtil.info}",
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

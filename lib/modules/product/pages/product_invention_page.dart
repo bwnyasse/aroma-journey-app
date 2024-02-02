@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
@@ -77,7 +78,7 @@ class _ProductInventionPageState extends State<ProductInventionPage> {
                     child: Column(
                       children: [
                         Text(
-                          'Generate by PaLM API',
+                          "Generate by ${AiUtil.info}",
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',

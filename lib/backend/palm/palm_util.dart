@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_language_api/google_generative_language_api.dart';
 
+@Deprecated("After migration to gemini, we should use the class AiUtil")
 class PaLMUtil {
   /// Generates text from a prompt using the PaLM 2.0 model.
   static Future<String> generateTextFormPaLM({
