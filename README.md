@@ -1,8 +1,29 @@
-# Aroma Journey App powered by PaLM API (Google's PaLM 2 Model)
+# Aroma Journey App powered by Gemini Pro and Google's Generative AI SDK for Dart
 
-**Aroma Journey** is an immersive and enlightening Flutter application that invites users to embark on a captivating exploration of the world of coffee. With a harmonious blend of rich narratives, interactive quizzes, and AI-powered insights, Aroma Journey transforms coffee appreciation into an engaging adventure.
+**Aroma Journey** is an immersive and enlightening Flutter application that invites users to embark on a captivating exploration of the world of coffee. Leveraging the latest in AI technology with Gemini Pro and Google's Generative AI SDK for Dart, Aroma Journey transforms coffee appreciation into an engaging and educational adventure.
 
-[![Codemagic build status](https://api.codemagic.io/apps/64fb84da8ddef7a6caff3441/64fb84da8ddef7a6caff3440/status_badge.svg)](https://codemagic.io/apps/64fb84da8ddef7a6caff3441/64fb84da8ddef7a6caff3440/latest_build)
+
+<table style="width:100%">
+  <tr>
+    <th>License</th>
+    <th>CI</th>
+    <th>Flutter</th>
+  </tr>
+  <tr>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=blue"/>
+    </td>
+    <td>
+        <a href="https://codemagic.io/apps/64fb84da8ddef7a6caff3441/64fb84da8ddef7a6caff3440/latest_build" target="_blank">
+            <img src="https://api.codemagic.io/apps/64fb84da8ddef7a6caff3441/64fb84da8ddef7a6caff3440/status_badge.svg"/>
+        </a>
+    </td>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=Flutter&message=3.19.0&color=blue"/>
+    </td>
+  </tr>
+</table>
+
 
 ## Table of Contents
 - [Screenshots](#screenshots)
@@ -28,13 +49,13 @@
 
 ## Key Features
 
-- **Coffee Categories Exploration:** Dive into an array of coffee categories such as Espresso, Cold Brew, and Cappuccino. Each category unveils a curated collection of unique coffee varieties, each with its own origin, history, and cultural significance.
+- **Coffee Categories Exploration:** Dive into an array of coffee categories such as Espresso, Cold Brew, and Cappuccino, each revealing a curated collection of unique coffee varieties with their own origin stories and cultural significance.
 
-- **Coffee Details:** Immerse yourself in the captivating stories behind each coffee variety. From the bold richness of Espresso to the nuanced notes of Cold Brew, uncover the intricacies that make each coffee special.
+- **Coffee Details:** Delve into the stories behind each coffee variety, from the bold richness of Espresso to the nuanced notes of Cold Brew, and discover what makes each coffee unique.
 
-- **AI-Powered Insights:** Elevate your coffee knowledge with the help of AI-generated insights. Delve into brewing tips, flavor profiles, and health considerations tailored to each coffee variety.
+- **AI-Powered Insights:** Utilize Gemini Pro's advanced AI capabilities to generate brewing tips, flavor profiles, and health considerations tailored to each coffee variety.
 
-- **Interactive Quizzes:** Test your coffee expertise with interactive quizzes that challenge your understanding of coffee history, preparation techniques, and flavor identification. Learn as you play!
+- **Interactive Quizzes:** Challenge your coffee knowledge with quizzes on coffee history, preparation techniques, and flavor identification, designed to be both educational and entertaining.
 
 ## To-Do List
 Here is a list of upcoming features and enhancements that I am planning for the "Aroma Journey" app:
@@ -50,13 +71,26 @@ Here is a list of upcoming features and enhancements that I am planning for the 
 - [ ] **User-Prompted Questions:** Introduce a user-input feature that allows users to prompt the app to generate specific questions or information about coffee, promoting interactivity and customization.
 
 ## Technologies Used
-- **[Flutter](https://flutter.dev/):** A framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
+
+- **[Flutter](https://flutter.dev/):** A framework for building natively compiled applications for mobile, web, and desktop from a single codebase. The project has been updated and tested with Flutter 3.19, ensuring compatibility with the latest features and improvements.
 
 - **[Firebase Auth](https://firebase.google.com/):** Used for user authentication and management.
 
-- **[Palm API](https://developers.generativeai.google/):** Leveraged for AI-powered text generation, creating engaging quizzes and informative coffee details.
+- **[Google Generative AI SDK for Dart](https://pub.dev/packages/google_generative_ai):** Integrating cutting-edge AI capabilities powered by Gemini Pro for generating engaging content and quizzes.
 
-- **[MakerSuite](https://developers.generativeai.google/products/makersuite):** Utilized for data validation and generation, enhancing the user experience by providing accurate and relevant content.
+- **[Google Ai Studio](https://ai.google.dev/tutorials/ai-studio_quickstart):** Utilized for data validation and generation, enhancing the user experience by providing accurate and relevant content.
+
+## AI Prompt Engineering with Google AI Studio
+
+The Aroma Journey app leverages advanced prompt engineering techniques to generate engaging and informative content about coffee. Below are screenshots from Google AI Studio, showcasing the libraries and configurations used to craft the AI-powered insights within the app.
+
+<div align="center">
+  <img src="screenshot/ai_library_1.png" alt="AI Library Screenshot 1">
+  <img src="screenshot/ai_library_2.png" alt="AI Library Screenshot 2">
+  <img src="screenshot/ai_library_3.png" alt="AI Library Screenshot 3"> 
+  <img src="screenshot/ai_library_4.png" alt="AI Library Screenshot 4">
+</div>
+
 
 ## Installation and Setup
 1. Clone this repository to your local machine.
@@ -84,16 +118,7 @@ Contributions are welcome! If you'd like to contribute to "Aroma Journey," pleas
 4. Submit a pull request to the main branch of this repository.
 
 5. Your contribution will be reviewed and merged if approved.
+
 <!-- License -->
 ## License
 This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
-
-## DEMO
-
-https://github.com/bwnyasse/aroma-journey-app/assets/5323628/dc64891c-c5a4-4bb6-b733-e4c1ef3caa43
-
-
-<!-- Acknowledgments -->
-## Acknowledgments
-...
-

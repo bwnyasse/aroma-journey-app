@@ -1,3 +1,4 @@
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_theme.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_widgets.dart';
@@ -174,7 +175,7 @@ class _QuizzPageState extends State<QuizzPage> {
                             // Generated code for this Text Widget...
                             Expanded(
                               child: Text(
-                                "Today's Quiz by PaLM API",
+                                "Today's Quiz by ${AiUtil.info}",
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

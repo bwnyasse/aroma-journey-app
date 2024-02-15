@@ -1,3 +1,4 @@
+import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/backend/backend.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_animations.dart';
 import 'package:aroma_journey/extra/flutter_flow/flutter_flow_choice_chips.dart';
@@ -248,7 +249,7 @@ class _HomeCategoriesWidgetState extends State<HomeCategoriesWidget> {
               children: [
                 Expanded(
                   child: Text(
-                    'Brewing by PaLM API',
+                    "Brewing by ${AiUtil.info}",
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Poppins',
                           fontSize: 23.0,
