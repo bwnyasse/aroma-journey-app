@@ -2,7 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AiUtil {
-  static const info = 'Google Generative AI';
+  static const info = 'Gemini Pro';
 
   /// Generates text from a prompt
   static Future<String> generateText({

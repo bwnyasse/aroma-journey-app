@@ -75,6 +75,12 @@ class HomeHeaderWidget extends StatelessWidget {
                       width: 1.0,
                     ),
                     borderRadius: BorderRadius.circular(30.0),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.normal,
+                        ),
                   ),
                 ),
               ),
