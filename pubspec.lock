@@ -416,10 +416,11 @@ packages:
   google_generative_ai:
     dependency: "direct main"
     description:
-      path: "../generative-ai-dart/pkgs/google_generative_ai"
-      relative: true
-    source: path
-    version: "0.0.0"
+      name: google_generative_ai
+      sha256: "2c8cb557c196487c5624da02a0914935e48874112a8201cb7b9379c79cd3bde7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   google_identity_services_web:
     dependency: transitive
     description:
@@ -716,14 +717,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
-  pool:
-    dependency: transitive
-    description:
-      name: pool
-      sha256: "20fe868b6314b322ea036ba325e6fc0711a22948856475e2c2b6306e8ab39c2a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.5.1"
   provider:
     dependency: "direct main"
     description:
