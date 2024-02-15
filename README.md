@@ -80,6 +80,18 @@ Here is a list of upcoming features and enhancements that I am planning for the 
 
 - **[Google Ai Studio](https://ai.google.dev/tutorials/ai-studio_quickstart):** Utilized for data validation and generation, enhancing the user experience by providing accurate and relevant content.
 
+## AI Prompt Engineering with Google AI Studio
+
+The Aroma Journey app leverages advanced prompt engineering techniques to generate engaging and informative content about coffee. Below are screenshots from Google AI Studio, showcasing the libraries and configurations used to craft the AI-powered insights within the app.
+
+<div align="center">
+  <img src="screenshot/ai_library_1.png" alt="AI Library Screenshot 1">
+  <img src="screenshot/ai_library_2.png" alt="AI Library Screenshot 2">
+  <img src="screenshot/ai_library_3.png" alt="AI Library Screenshot 3"> 
+  <img src="screenshot/ai_library_4.png" alt="AI Library Screenshot 4">
+</div>
+
+
 ## Installation and Setup
 1. Clone this repository to your local machine.
 
