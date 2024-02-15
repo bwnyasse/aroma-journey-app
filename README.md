@@ -122,8 +122,3 @@ Contributions are welcome! If you'd like to contribute to "Aroma Journey," pleas
 <!-- License -->
 ## License
 This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
-
-<!-- Acknowledgments 
-## Acknowledgments
-...
--->
