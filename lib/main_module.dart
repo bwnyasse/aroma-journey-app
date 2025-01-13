@@ -15,7 +15,7 @@ class MainModule extends Module {
     i.addSingleton(AuthService.new);
     i.addSingleton(ProductService.new);
     i.addSingleton(QuizzService.new);
-    i.addSingleton(AuthBloc.new);
+    i.addSingleton((i) => AuthBloc(i.get<AuthService>()));
   }
 
   @override
