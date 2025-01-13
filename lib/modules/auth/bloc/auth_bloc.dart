@@ -1,12 +1,15 @@
 import 'package:aroma_journey/modules/auth/auth_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitState()) {
+  final AuthService authService;
+
+  AuthBloc(this.authService) : super(AuthInitState()) {
     on<AuthInitEvent>((event, emit) => _onAuthInitEvent(emit));
     on<AuthLoginWithGoogleEvent>(
         (event, emit) => _onAuthLoginEvent(emit, false));
@@ -22,9 +25,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ///
   void _onAuthInitEvent(Emitter<AuthState> emit) {
     try {
-      final isSignedIn = service.isSignedIn();
+      final isSignedIn = authService.isSignedIn();
       if (isSignedIn) {
-        final currentUser = service.getUser();
+        final currentUser = authService.getUser();
         emit(_userToState(currentUser));
       } else {
         emit(AuthFailedState());
@@ -41,11 +44,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _onAuthLoginEvent(Emitter<AuthState> emit, bool anonymous) async {
     try {
       anonymous
-          ? await service.signInAnoymously()
-          : await service.signInWithGoogle();
-      final isSignedIn = service.isSignedIn();
+          ? await authService.signInAnoymously()
+          : await authService.signInWithGoogle();
+      final isSignedIn = authService.isSignedIn();
       if (isSignedIn) {
-        final currentUser = service.getUser();
+        final currentUser = authService.getUser();
         emit(_userToState(currentUser));
       } else {
         emit(AuthFailedState());
@@ -60,7 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   /// On AuthSuccessEvent
   ///
   void _onAuthSuccessEvent(Emitter<AuthState> emit) {
-    final currentUser = service.getUser();
+    final currentUser = authService.getUser();
     emit(_userToState(currentUser));
   }
 
@@ -69,7 +72,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ///
   void _onAuthFailedEvent(Emitter<AuthState> emit) {
     emit(AuthFailedState());
-    service.signOut();
+    authService.signOut();
   }
 
   AuthState _userToState(final currentUser) {
@@ -80,6 +83,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return AuthErrorState();
     }
   }
-
-  AuthService get service => Modular.get<AuthService>();
 }
