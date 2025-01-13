@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'schema/util/firestore_util.dart';
-
 import 'schema/product_record.dart';
 import 'schema/category_record.dart';
+import 'package:logging/logging.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,7 +12,11 @@ export 'package:flutter/material.dart' show Color, Colors;
 export 'schema/product_record.dart';
 export 'schema/category_record.dart';
 
+final _logger = Logger('Backend');
+
 /// Functions to query ProductRecords (as a Stream and as a Future).
+
+/// Queries the count of ProductRecords.
 Future<int> queryProductRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -24,6 +27,7 @@ Future<int> queryProductRecordCount({
       limit: limit,
     );
 
+/// Queries ProductRecords as a stream.
 Stream<List<ProductRecord>> queryProductRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -37,6 +41,7 @@ Stream<List<ProductRecord>> queryProductRecord({
       singleRecord: singleRecord,
     );
 
+/// Queries ProductRecords once.
 Future<List<ProductRecord>> queryProductRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -51,6 +56,8 @@ Future<List<ProductRecord>> queryProductRecordOnce({
     );
 
 /// Functions to query CategoryRecords (as a Stream and as a Future).
+
+/// Queries the count of CategoryRecords.
 Future<int> queryCategoryRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -61,6 +68,7 @@ Future<int> queryCategoryRecordCount({
       limit: limit,
     );
 
+/// Queries CategoryRecords as a stream.
 Stream<List<CategoryRecord>> queryCategoryRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -74,6 +82,7 @@ Stream<List<CategoryRecord>> queryCategoryRecord({
       singleRecord: singleRecord,
     );
 
+/// Queries CategoryRecords once.
 Future<List<CategoryRecord>> queryCategoryRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -87,6 +96,7 @@ Future<List<CategoryRecord>> queryCategoryRecordOnce({
       singleRecord: singleRecord,
     );
 
+/// Queries the count of documents in a collection.
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -103,11 +113,12 @@ Future<int> queryCollectionCount(
       .get()
       .then((value) => value.count ?? 0)
       .catchError((err) {
-    print('Error querying $collection: $err');
+    _logger.severe('Error querying $collection: $err');
     return 0; // Return a default value in case of error
   });
 }
 
+/// Queries a collection as a stream.
 Stream<List<T>> queryCollection<T>(
   Query collection,
   RecordBuilder<T> recordBuilder, {
@@ -121,12 +132,12 @@ Stream<List<T>> queryCollection<T>(
     query = query.limit(singleRecord ? 1 : limit);
   }
   return query.snapshots().handleError((err) {
-    print('Error querying $collection: $err');
+    _logger.severe('Error querying $collection: $err');
   }).map((s) => s.docs
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => _logger.severe('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
@@ -134,6 +145,7 @@ Stream<List<T>> queryCollection<T>(
       .toList());
 }
 
+/// Queries a collection once.
 Future<List<T>> queryCollectionOnce<T>(
   Query collection,
   RecordBuilder<T> recordBuilder, {
@@ -150,7 +162,7 @@ Future<List<T>> queryCollectionOnce<T>(
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => _logger.severe('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
@@ -158,6 +170,7 @@ Future<List<T>> queryCollectionOnce<T>(
       .toList());
 }
 
+/// Extension on Query to add additional query methods.
 extension QueryExtension on Query {
   Query whereIn(String field, List? list) => (list?.isEmpty ?? true)
       ? where(field, whereIn: null)
@@ -173,6 +186,7 @@ extension QueryExtension on Query {
           : where(field, arrayContainsAny: list);
 }
 
+/// A class representing a page of Firestore documents.
 class FFFirestorePage<T> {
   final List<T> data;
   final Stream<List<T>>? dataStream;
@@ -181,6 +195,7 @@ class FFFirestorePage<T> {
   FFFirestorePage(this.data, this.dataStream, this.nextPageMarker);
 }
 
+/// Queries a collection with pagination.
 Future<FFFirestorePage<T>> queryCollectionPage<T>(
   Query collection,
   RecordBuilder<T> recordBuilder, {
@@ -206,7 +221,7 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => _logger.severe('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
