@@ -2,6 +2,7 @@ import 'package:aroma_journey/modules/auth/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 class AuthServiceException implements Exception {
   final Object error;

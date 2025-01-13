@@ -1,6 +1,7 @@
 import 'package:aroma_journey/modules/auth/auth_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 import 'auth_event.dart';
 import 'auth_state.dart';

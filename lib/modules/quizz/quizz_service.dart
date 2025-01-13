@@ -1,6 +1,6 @@
 import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/modules/quizz/pages/quizz_pages.dart';
-import 'package:aroma_journey/modules/shared/shared.dart' as shared;
+import 'package:aroma_journey/shared/shared.dart' as shared;
 
 const String exampleInput1 =
     'Could you generate a true or false question about Classic Expression for me? Please include the answer at the end within curly braces {}.';

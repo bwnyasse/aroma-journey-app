@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:aroma_journey/backend/ai/ai_util.dart';
 import 'package:aroma_journey/modules/shared/shared.dart' as shared;
 import 'package:aroma_journey/modules/product/model/product_invention_model.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 class PromptProductDetail {
   static const String exampleInput1 =

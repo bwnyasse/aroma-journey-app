@@ -1,8 +1,9 @@
-import 'package:aroma_journey/extra/flutter_flow/internationalization.dart';
+import 'package:aroma_journey/extra/flutter_flow/utils/internationalization.dart';
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 class MainWidget extends StatefulWidget {
   const MainWidget({super.key});

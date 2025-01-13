@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logging/logging.dart';
+import 'package:aroma_journey/shared/shared.dart';
 
 final log = Logger('AmoraJourney');
 
