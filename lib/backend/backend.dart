@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
 
 import '../schema/util/firestore_util.dart';
 
@@ -12,6 +13,8 @@ export '../schema/util/schema_util.dart';
 export 'package:flutter/material.dart' show Color, Colors;
 export '../schema/product_record.dart';
 export '../schema/category_record.dart';
+
+final logger = Logger();
 
 /// Functions to query ProductRecords (as a Stream and as a Future).
 Future<int> queryProductRecordCount({
@@ -103,7 +106,7 @@ Future<int> queryCollectionCount(
       .get()
       .then((value) => value.count ?? 0)
       .catchError((err) {
-    print('Error querying $collection: $err');
+    logger.e('Error querying $collection: $err');
     return 0; // Return a default value in case of error
   });
 }
@@ -121,12 +124,12 @@ Stream<List<T>> queryCollection<T>(
     query = query.limit(singleRecord ? 1 : limit);
   }
   return query.snapshots().handleError((err) {
-    print('Error querying $collection: $err');
+    logger.e('Error querying $collection: $err');
   }).map((s) => s.docs
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => logger.e('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
@@ -150,7 +153,7 @@ Future<List<T>> queryCollectionOnce<T>(
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => logger.e('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
@@ -206,7 +209,7 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
-          (e) => print('Error serializing doc ${d.reference.path}:\n$e'),
+          (e) => logger.e('Error serializing doc ${d.reference.path}:\n$e'),
         ),
       )
       .where((d) => d != null)
