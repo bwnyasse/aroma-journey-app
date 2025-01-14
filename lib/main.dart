@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aroma_journey/backend/firebase/firebase_options.dart';
+import 'package:aroma_journey/config/firebase_options.dart';
 import 'package:aroma_journey/main_module.dart';
 import 'package:aroma_journey/main_widget.dart';
 import 'package:firebase_core/firebase_core.dart';

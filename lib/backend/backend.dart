@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'schema/util/firestore_util.dart';
+import '../schema/util/firestore_util.dart';
 
-import 'schema/product_record.dart';
-import 'schema/category_record.dart';
+import '../schema/product_record.dart';
+import '../schema/category_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
-export 'schema/util/firestore_util.dart';
-export 'schema/util/schema_util.dart';
+export '../schema/util/firestore_util.dart';
+export '../schema/util/schema_util.dart';
 export 'package:flutter/material.dart' show Color, Colors;
-export 'schema/product_record.dart';
-export 'schema/category_record.dart';
+export '../schema/product_record.dart';
+export '../schema/category_record.dart';
 
 /// Functions to query ProductRecords (as a Stream and as a Future).
 Future<int> queryProductRecordCount({
