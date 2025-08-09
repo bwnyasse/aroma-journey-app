@@ -1,0 +1,99 @@
+commit 16ffc26466119a4ed2e36fe464bd92acad6ab1e3
+Author: bwnyasse <5323628+bwnyasse@users.noreply.github.com>
+Date:   Thu Feb 15 11:49:40 2024 +0100
+
+    docs(README.md): add section about AI Prompt Engineering with Google AI Studio
+    
+    feat(README.md): add screenshots of AI libraries used in Google AI Studio for prompt engineering
+    
+    The README.md file has been updated to include a new section titled "AI Prompt Engineering with Google AI Studio". This section showcases the advanced prompt engineering techniques used in the Aroma Journey app to generate engaging and informative content about coffee. The section includes screenshots of the AI libraries and configurations used in Google AI Studio to craft the AI-powered insights within the app.
+    
+    Additionally, four new screenshot files (ai_library_1.png, ai_library_2.png, ai_library_3.png, ai_library_4.png) have been added to the "screenshot" directory. These screenshots depict the AI libraries used in Google AI Studio for prompt engineering.
+
+commit b2653c4e08784265f07eb4216a89f0506021e6d6
+Author: bwnyasse <5323628+bwnyasse@users.noreply.github.com>
+Date:   Thu Feb 15 11:34:36 2024 +0100
+
+    chore(pubspec.yaml): update google_generative_ai dependency to version 0.2.0
+    chore(pubspec.yaml): comment out local path dependency for google_generative_ai
+
+commit 2d8a7631268e906400cb4f551e4ad0a4bb3b4ee2
+Author: bwnyasse <5323628+bwnyasse@users.noreply.github.com>
+Date:   Thu Feb 15 11:29:03 2024 +0100
+
+    chore(README.md): update project description and dependencies
+    
+    feat(README.md): update project description to reflect the use of Gemini Pro and Google's Generative AI SDK for Dart for AI capabilities
+    
+    chore(README.md): update Flutter version to 3.19.0
+    
+    chore(README.md): update technologies used section to include Google Generative AI SDK for Dart
+    
+    fix(ai_util.dart): update info constant to reflect the use of Gemini Pro
+    
+    feat(home_header_widget.dart): update text style for the button
+    
+    The README.md file was updated to provide a more accurate and comprehensive description of the project. The project now uses Gemini Pro and Google's Generative AI SDK for Dart to enhance the AI capabilities. The Flutter version has been updated to 3.19.0 to ensure compatibility with the latest features and improvements. The technologies used section now includes Google Generative AI SDK for Dart. In the ai_util.dart file, the info constant was updated to reflect the use of Gemini Pro. In the home_header_widget.dart file, the text style for the button was updated to match the design requirements.
+
+commit 800f525b8ae2e823ffc96975470288ae8ef3af93
+Author: bwnyasse <5323628+bwnyasse@users.noreply.github.com>
+Date:   Fri Feb 2 18:24:11 2024 -0500
+
+    chore(palm_util.dart): remove deprecated PaLMUtil class
+    
+    The PaLMUtil class is no longer needed as we have migrated to the Gemini platform. The functionality provided by PaLMUtil is now handled by the AiUtil class.
+    
+    feat(auth_service.dart): add support for anonymous sign-in
+    
+    This change adds support for anonymous sign-in using Firebase. The new method `signInAnoymously` is added to the `AuthService` class. This allows users to sign in anonymously and returns the signed-in user's information.
+    
+    fix(auth_service.dart): set default display name for anonymous users
+    
+    When signing in anonymously, the display name for the user is set to "Anonymous" instead of "notfound".
+    
+    feat(auth_bloc.dart): handle anonymous login event
+    
+    The `AuthBloc` now handles the `AuthLoginWithAnonymousEvent` event. When this event is triggered, the `AuthService` is called to perform anonymous sign-in.
+    
+    feat(auth_event.dart): add AuthLoginWithAnonymousEvent
+    
+    This event is triggered when the user tries to log in with Firebase Anonymous authentication.
+    
+    feat(login_widget.dart): add button for anonymous login
+    
+    A new button for anonymous login is added to the login screen. When clicked, it triggers the `AuthLoginWithAnonymousEvent` event.
+    
+    fix(product_service.dart): fix typo in prompt string
+    
+    A typo in the prompt string used for generating product details is fixed.
+    
+    fix(loading_indicator.dart): remove extra semicolon
+    
+    An extra semicolon is removed from the `LoadinIndicator` class.
+    
+    chore(pubspec.yaml): remove unused dependencies
+    
+    The `google_generative_language_api` and `firebase_app_check` dependencies are removed from the `pubspec.yaml` file as they are no longer used.
+    
+    feat(quizz_service.dart): remove unused import
+    
+    The `palm_util.dart` import is removed from the `quizz_service.dart` file as it is no longer used.
+
+commit 292bebba598bc74e813126b44ba33cf26dd20cb3
+Author: bwnyasse <5323628+bwnyasse@users.noreply.github.com>
+Date:   Fri Feb 2 05:54:04 2024 -0500
+
+    feat(ai_util.dart): add AiUtil class to handle text generation using Google Generative AI
+    
+    The `AiUtil` class is added to handle text generation using the Google Generative AI. This class provides a method `generateText` that takes input examples and an input prompt and generates text based on the examples and prompt.
+    
+    The `generateText` method constructs a prompt string with input examples using the few-shot prompt technique. It then creates a `GenerativeModel` instance with the AI model name and API key obtained from the `.env` file. The `GenerativeModel` is configured with safety settings and generation parameters.
+    
+    The `generateContent` method of the `GenerativeModel` is called to generate text based on the prompt. The generated text is returned as the result.
+    
+    The `AiUtil` class is used in multiple files:
+    - `product_service.dart`: The `_generatedProductInventions` and `_generatedProductDetail` methods now use `AiUtil.generateText` instead of `PaLMUtil.generateTextFormPaLM`.
+    - `quizz_service.dart`: The `_generativeAIQuizzCoffeJourney` method now uses `AiUtil.generateText` instead of `PaLMUtil.generateTextFormPaLM`.
+    - `loading_indicator.dart`: The loading text is updated to indicate that it is loading by using `AiUtil.info`.
+    
+    The `PaLMUtil` class is marked as deprecated with a deprecation message indicating that it should be replaced with the `AiUtil` class after migration to the Gemini model.

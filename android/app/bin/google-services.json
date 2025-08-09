@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "167171721391",
+    "project_id": "aroma-journey-8f041",
+    "storage_bucket": "aroma-journey-8f041.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167171721391:android:c2b3adf5b11cc305e46c5a",
+        "android_client_info": {
+          "package_name": "net.bwnyasse.aroma_journey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167171721391-itdk6bm1cd49s8fr2f1bbhnfqcbqbcqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqPwK-vDHh7VTncWalLyQLcM6RLTl3JkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167171721391-itdk6bm1cd49s8fr2f1bbhnfqcbqbcqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
